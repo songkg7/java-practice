@@ -1,4 +1,4 @@
-package com.time;
+package com.example.test.time;
 
 import java.time.DayOfWeek;
 import java.time.temporal.ChronoField;

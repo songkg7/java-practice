@@ -1,4 +1,4 @@
-package com;
+package com.example.test.time;
 
 public class Main {
 
