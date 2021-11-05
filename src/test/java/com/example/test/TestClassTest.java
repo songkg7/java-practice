@@ -14,6 +14,7 @@ class TestClassTest {
         test.add(new TestClass());
 
         test.forEach(TestInterface::getTime);
+
     }
 
 }
