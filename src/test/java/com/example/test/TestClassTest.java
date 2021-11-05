@@ -15,6 +15,8 @@ class TestClassTest {
 
         test.forEach(TestInterface::getTime);
 
+        System.out.println("Signature Test");
+
     }
 
 }
