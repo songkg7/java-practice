@@ -1,4 +1,4 @@
-package time;
+package com.example.test.time;
 
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 import static java.time.temporal.TemporalAdjusters.nextOrSame;

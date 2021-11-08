@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.test.TestClassTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-08T05:57:06" hostname="song-gyeong-geun-ui-MacBookPro.local" time="0.018">
+  <properties/>
+  <testcase name="isEmpty() 는 null check 에는 쓸 수 없다." classname="com.example.test.TestClassTest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
