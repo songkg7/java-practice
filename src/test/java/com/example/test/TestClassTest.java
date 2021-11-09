@@ -30,4 +30,15 @@ class TestClassTest {
         assertThrows(NullPointerException.class, () -> nullList.isEmpty());
     }
 
+    @Test
+    @DisplayName("5자리 랜덤숫자")
+    void test_3() {
+
+        for (int i = 0; i < 1000; i++) {
+            int j = (int) (Math.random() * (90_000)) + 10_000;
+            System.out.println("num = " + j);
+        }
+
+    }
+
 }
