@@ -40,6 +40,15 @@ public class TimeTest {
     void calendar() {
         Date now = Calendar.getInstance().getTime();
 
+        Calendar cal = Calendar.getInstance();
+        System.out.println("cal.getTime() = " + cal.getTime());
+
+        cal.add(Calendar.DATE, -1);
+
+
+
+//        start = cal.getTime();
+
         // Date 의 여러 문제점으로 인해 Calendar 가 등장하며 Date 의 여러 메서드들이 deprecate 되었다.
         // 하지만 역시 쉽게 에러를 일으키는 구조를 가지고 있으며, 달의 인덱스도 여전히 0부터 시작한다.
         // 게다가 DateFormat 같은 일부 기능은 Date 에서만 작동한다. DateFormat 은 스레드에 안전하지 않은 문제점도 갖고 있다.
@@ -47,6 +56,9 @@ public class TimeTest {
         // 또한 여전히 가변클래스이기 때문에 유지보수가 어렵다.
         System.out.println("=============================");
         System.out.println("now = " + now);
+
+        System.out.println("cal = " + cal);
+        System.out.println("cal.getTime() = " + cal.getTime());
     }
 
     @Test
@@ -73,6 +85,7 @@ public class TimeTest {
         LocalDateTime dateTime = LocalDateTime.of(parseDate, parseTime);
         LocalDateTime dateTime1 = parseDate.atTime(parseTime);
         LocalDateTime dateTime2 = parseTime.atDate(parseDate);
+        LocalDateTime dateTime3 = parseDate.atTime(0, 0);
 
         int dayOfYear = date.getDayOfYear();
         int dayOfMonth = date.getDayOfMonth();
@@ -146,6 +159,10 @@ public class TimeTest {
         System.out.println("10월의 마지막 날 = " + date3);
         System.out.println("=============================");
         System.out.println("timeFormInstant = " + timeFormInstant);
+        System.out.println("=============================");
+        System.out.println("dateTime3 = " + dateTime3);
+        System.out.println("=============================");
+        System.out.println("add -3 = " + LocalDateTime.now().plusHours(-3));
     }
 
 }

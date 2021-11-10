@@ -2,6 +2,8 @@ package com.example.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.example.test.nullcheck.Human;
+import com.example.test.nullcheck.Money;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -39,6 +41,37 @@ class TestClassTest {
             System.out.println("num = " + j);
         }
 
+    }
+
+    @Test
+    @DisplayName("null check")
+    void test_4() {
+        Human human = new Human();
+        Money money = new Money();
+
+        human.getMoney().getInsect().getName();
+
+        while (true) {
+            if (isNull(human.getMoney())) {
+                System.out.println("human money is null!!");
+                continue;
+            }
+            if (isNull(human.getMoney().getInsect())) {
+                System.out.println("null");
+                continue;
+            }
+
+            break;
+        }
+
+    }
+
+    private boolean isNull(Object object) {
+        if (object == null) {
+            System.out.println("object is null!!");
+            return true;
+        }
+        return false;
     }
 
 }
