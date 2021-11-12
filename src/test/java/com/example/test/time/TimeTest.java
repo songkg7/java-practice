@@ -4,6 +4,7 @@ import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 import static java.time.temporal.TemporalAdjusters.nextOrSame;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,8 +45,6 @@ public class TimeTest {
         System.out.println("cal.getTime() = " + cal.getTime());
 
         cal.add(Calendar.DATE, -1);
-
-
 
 //        start = cal.getTime();
 
@@ -111,7 +110,12 @@ public class TimeTest {
         Instant.ofEpochSecond(4, -1_000_000_000);  // 4초 이전의 1억 나노초 (1초)
 
         // 기간 - Durations, Period
-        Period tenDays = Period.between(LocalDate.of(2021, 1, 1), LocalDate.of(2021, 1, 11));
+        LocalDate time1 = LocalDate.of(2021, 1, 1);
+        LocalDate time2 = LocalDate.of(2021, 1, 11);
+
+        // TODO: Duration test 추가
+//        Duration duration = Duration.between(time1, time2);
+        Period tenDays = Period.between(time1, time2);
 
         // 좀 더 복잡한 날짜 조정
         LocalDate date1 = LocalDate.of(2021, 10, 14);
@@ -152,6 +156,7 @@ public class TimeTest {
         System.out.println("UTC = " + utc);
         System.out.println("parisTime = " + parisTime);
         System.out.println("=============================");
+
         System.out.println("tenDays = " + tenDays);
         System.out.println("=============================");
         System.out.println("date1 = " + date1);
