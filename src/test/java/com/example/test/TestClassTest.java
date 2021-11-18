@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.example.test.nullcheck.Human;
 import com.example.test.nullcheck.Money;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -72,6 +73,24 @@ class TestClassTest {
             return true;
         }
         return false;
+    }
+
+    @Test
+    @DisplayName("불변 객체를 사용해야하는 이유 1")
+    void test_5() {
+        List<Integer> first = new ArrayList<>();
+
+        first.add(0);
+        first.add(1);
+        first.add(2);
+
+        List<Integer> second = first;
+
+        // second 가 아닌 first 에 값을 할당해준다.
+        first.add(3);
+
+        System.out.println("second = " + second);
+
     }
 
 }
