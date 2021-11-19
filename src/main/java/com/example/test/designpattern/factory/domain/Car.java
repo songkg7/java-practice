@@ -1,7 +1,7 @@
 package com.example.test.designpattern.factory.domain;
 
-public abstract class Car {
+public interface Car {
 
-    public abstract String getName();
+    String getName();
 
 }

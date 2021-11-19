@@ -3,7 +3,7 @@ package com.example.test.designpattern.factory.domain;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Sedan extends Car {
+public class Sedan implements Car {
 
     public Sedan() {
         log.info("create Sedan.");

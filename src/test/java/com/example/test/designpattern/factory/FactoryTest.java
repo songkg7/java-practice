@@ -13,6 +13,7 @@ class FactoryTest {
         Car car = Factory.create(Hybrid.class);
 
         System.out.println(car.getClass().getSimpleName());
+        System.out.println("car.getName() = " + car.getName());
     }
 
 }
