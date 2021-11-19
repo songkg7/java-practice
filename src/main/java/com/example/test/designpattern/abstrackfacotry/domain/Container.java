@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Container extends Ship {
+public class Container implements Ship {
 
     private String name;
 
