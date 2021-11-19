@@ -1,5 +1,6 @@
-package com.example.test.designpattern.strategy;
+package com.example.test.designpattern.strategy.car;
 
+import com.example.test.designpattern.strategy.car.behavior.CarMoveBehavior;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

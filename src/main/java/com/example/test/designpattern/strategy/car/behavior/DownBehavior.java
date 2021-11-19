@@ -1,6 +1,4 @@
-package com.example.test.designpattern.strategy.behavior;
-
-import com.example.test.designpattern.strategy.CarMoveBehavior;
+package com.example.test.designpattern.strategy.car.behavior;
 
 public class DownBehavior implements CarMoveBehavior {
 

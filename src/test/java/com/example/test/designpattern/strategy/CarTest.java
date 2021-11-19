@@ -1,11 +1,10 @@
 package com.example.test.designpattern.strategy;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import com.example.test.designpattern.strategy.behavior.DownBehavior;
-import com.example.test.designpattern.strategy.behavior.LeftBehavior;
-import com.example.test.designpattern.strategy.behavior.RightBehavior;
-import com.example.test.designpattern.strategy.behavior.UpBehavior;
+import com.example.test.designpattern.strategy.car.Car;
+import com.example.test.designpattern.strategy.car.behavior.DownBehavior;
+import com.example.test.designpattern.strategy.car.behavior.LeftBehavior;
+import com.example.test.designpattern.strategy.car.behavior.RightBehavior;
+import com.example.test.designpattern.strategy.car.behavior.UpBehavior;
 import org.junit.jupiter.api.Test;
 
 class CarTest {
