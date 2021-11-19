@@ -16,11 +16,13 @@ class CarTest {
         Car car2 = Car.withBehavior(new DownBehavior());
         Car car3 = Car.withBehavior(new RightBehavior());
         Car car4 = Car.withBehavior(new LeftBehavior());
+        // Car car5 = Car.create(); // NPE
 
         car1.move();
         car2.move();
         car3.move();
         car4.move();
+        // car5.move();
     }
 
 }
