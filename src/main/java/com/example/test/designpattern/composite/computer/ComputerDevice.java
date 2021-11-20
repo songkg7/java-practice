@@ -1,4 +1,4 @@
-package com.example.test.designpattern.composite;
+package com.example.test.designpattern.composite.computer;
 
 public interface ComputerDevice {
 

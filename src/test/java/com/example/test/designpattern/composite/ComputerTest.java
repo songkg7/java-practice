@@ -1,8 +1,9 @@
 package com.example.test.designpattern.composite;
 
-import com.example.test.designpattern.composite.leaf.Body;
-import com.example.test.designpattern.composite.leaf.KeyBoard;
-import com.example.test.designpattern.composite.leaf.Monitor;
+import com.example.test.designpattern.composite.computer.Computer;
+import com.example.test.designpattern.composite.computer.leaf.Body;
+import com.example.test.designpattern.composite.computer.leaf.KeyBoard;
+import com.example.test.designpattern.composite.computer.leaf.Monitor;
 import org.junit.jupiter.api.Test;
 
 class ComputerTest {

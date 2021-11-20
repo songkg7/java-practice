@@ -1,6 +1,6 @@
-package com.example.test.designpattern.composite.leaf;
+package com.example.test.designpattern.composite.computer.leaf;
 
-import com.example.test.designpattern.composite.ComputerDevice;
+import com.example.test.designpattern.composite.computer.ComputerDevice;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
