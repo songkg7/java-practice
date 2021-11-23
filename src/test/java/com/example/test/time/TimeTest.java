@@ -17,6 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.StopWatch;
 
 /**
  * NOTE: 시간 관련 APIs
@@ -168,6 +169,17 @@ public class TimeTest {
         System.out.println("dateTime3 = " + dateTime3);
         System.out.println("=============================");
         System.out.println("add -3 = " + LocalDateTime.now().plusHours(-3));
+    }
+
+    @Test
+    void stopWatch() throws InterruptedException {
+        StopWatch stopWatch = new StopWatch("StopWatch TEST!!");
+
+        stopWatch.start();
+        Thread.sleep(2000);
+        stopWatch.stop();
+
+        System.out.println(stopWatch.prettyPrint());
     }
 
 }
