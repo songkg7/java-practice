@@ -17,9 +17,12 @@ public class Won10Dispenser implements DispenseChain {
 
             System.out.println("Dispensing " + num + " 10₩ note");
 
-            if (remainder != 0) {
-                this.nextChain.dispense(new Currency(remainder));
+            if (remainder == 0) {
+                return;
             }
+
+            this.nextChain.dispense(new Currency(remainder));
+            return;
         }
         this.nextChain.dispense(currency);
     }
