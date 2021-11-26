@@ -1,4 +1,4 @@
-package com.example.test.designpattern.chainofresponsibility;
+package com.example.test.designpattern.chainofresponsibility.dispenser;
 
 public class Won1Dispenser implements DispenseChain {
 

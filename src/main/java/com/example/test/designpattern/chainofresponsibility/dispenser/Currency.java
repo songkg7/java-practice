@@ -1,4 +1,4 @@
-package com.example.test.designpattern.chainofresponsibility;
+package com.example.test.designpattern.chainofresponsibility.dispenser;
 
 import lombok.Getter;
 
