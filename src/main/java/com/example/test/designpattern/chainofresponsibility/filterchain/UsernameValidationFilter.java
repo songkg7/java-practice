@@ -11,7 +11,7 @@ public class UsernameValidationFilter implements FilterChain {
 
     @Override
     public FilterChain doFilter(SignUpForm signUpForm) {
-        if (!signUpForm.getName().matches("\\w")) {
+        if (!signUpForm.getName().matches("^[a-zA-Z]*$")) {
             System.out.println("유저 아이디는 문자열이여야만 합니다.");
         }
 

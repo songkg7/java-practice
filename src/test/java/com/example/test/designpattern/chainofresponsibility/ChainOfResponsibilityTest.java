@@ -43,7 +43,7 @@ class ChainOfResponsibilityTest {
 
     @Test
     void test_2() {
-        SignUpForm signUpForm = new SignUpForm("test", "1234");
+        SignUpForm signUpForm = new SignUpForm("test1", "1234");
 
         filterChain.doFilter(signUpForm);
     }
