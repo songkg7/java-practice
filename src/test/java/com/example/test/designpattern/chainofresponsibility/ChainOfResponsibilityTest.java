@@ -32,7 +32,6 @@ class ChainOfResponsibilityTest {
 
         this.filterChain = new UsernameValidationFilter();
         filterChain.setNext(new PasswordValidationFilter());
-//        filterChain.setNext(new LastFilter());
 
     }
 
