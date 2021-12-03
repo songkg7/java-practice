@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class LampOnCommand implements Command {
 
-    private Lamp lamp;
+    private final Lamp lamp;
 
     public LampOnCommand(Lamp lamp) {
         this.lamp = lamp;

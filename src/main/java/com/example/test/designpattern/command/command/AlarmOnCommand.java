@@ -4,7 +4,7 @@ import com.example.test.designpattern.command.functions.Alarm;
 
 public class AlarmOnCommand implements Command {
 
-    private Alarm alarm;
+    private final Alarm alarm;
 
     public AlarmOnCommand(Alarm alarm) {
         this.alarm = alarm;
