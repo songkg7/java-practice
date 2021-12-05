@@ -5,12 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.example.test.nullcheck.Human;
 import com.example.test.nullcheck.Money;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class TestClassTest {
+class BasicTest {
 
     @Test
     void test_1() {

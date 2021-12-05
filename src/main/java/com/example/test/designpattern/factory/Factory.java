@@ -21,7 +21,7 @@ public class Factory {
         map.put(Truck.class, Truck::new);
     }
 
-    public static Car create(Class<? extends Car> clazz) {
+    public static <T extends Car> Car create(Class<T> clazz) {
         return map.get(clazz).get();
     }
 
