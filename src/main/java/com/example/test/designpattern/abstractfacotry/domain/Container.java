@@ -1,4 +1,4 @@
-package com.example.test.designpattern.abstrackfacotry.domain;
+package com.example.test.designpattern.abstractfacotry.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

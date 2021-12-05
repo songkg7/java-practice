@@ -1,8 +1,6 @@
-package com.example.test.designpattern.abstrackfacotry;
+package com.example.test.designpattern.abstractfacotry;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import com.example.test.designpattern.abstrackfacotry.domain.Ship;
+import com.example.test.designpattern.abstractfacotry.domain.Ship;
 import org.junit.jupiter.api.Test;
 
 class ShipFactoryTest {

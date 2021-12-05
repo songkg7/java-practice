@@ -1,6 +1,6 @@
-package com.example.test.designpattern.abstrackfacotry;
+package com.example.test.designpattern.abstractfacotry;
 
-import com.example.test.designpattern.abstrackfacotry.domain.Ship;
+import com.example.test.designpattern.abstractfacotry.domain.Ship;
 
 public class ShipFactory {
 
