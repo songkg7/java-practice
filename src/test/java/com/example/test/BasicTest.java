@@ -2,10 +2,12 @@ package com.example.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.example.test.effectivejava.item59.OldRandom;
 import com.example.test.nullcheck.Human;
 import com.example.test.nullcheck.Money;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -90,6 +92,47 @@ class BasicTest {
 
         System.out.println("second = " + second);
 
+    }
+
+    @Test
+    @DisplayName("Random 값의 잘못된 사용, 값이 한 쪽으로 쏠린다!")
+    void test_6_1() {
+        int n = 2 * (Integer.MAX_VALUE / 3);
+        int low = 0;
+        for (int i = 0; i < 1_000_000; i++) {
+            if (OldRandom.random(n) < n / 2) {
+                low++;
+            }
+        }
+        System.out.println("low = " + low);
+    }
+
+    @Test
+    @DisplayName("개선된 Random.nextInt()")
+    void test_6_2() {
+        int n = 2 * (Integer.MAX_VALUE / 3);
+        int low = 0;
+        for (int i = 0; i < 1_000_000; i++) {
+            if (OldRandom.staticRandom(n) < n / 2) {
+                low++;
+            }
+        }
+        System.out.println("low = " + low);
+    }
+
+
+    @Test
+    @DisplayName("Random 값의 올바른 생성 - ThreadLocalRandom")
+    void test_6_3() {
+        int n = 2 * (Integer.MAX_VALUE / 3);
+        int low = 0;
+        for (int i = 0; i < 1_000_000; i++) {
+            int nextInt = ThreadLocalRandom.current().nextInt(1, n);
+            if (nextInt < n / 2) {
+                low++;
+            }
+        }
+        System.out.println("low = " + low);
     }
 
 }
