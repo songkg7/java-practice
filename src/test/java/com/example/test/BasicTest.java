@@ -95,6 +95,12 @@ class BasicTest {
     }
 
     @Test
+    @DisplayName("불변 객체를 사용해야하는 이유 2")
+    void test_5_2() {
+        // how to immutable
+    }
+
+    @Test
     @DisplayName("Random 값의 잘못된 사용, 값이 한 쪽으로 쏠린다!")
     void test_6_1() {
         int n = 2 * (Integer.MAX_VALUE / 3);
