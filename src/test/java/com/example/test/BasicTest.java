@@ -10,9 +10,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.StopWatch;
 
 class BasicTest {
 
@@ -153,6 +155,19 @@ class BasicTest {
             }
         }
         System.out.println("low = " + low);
+    }
+
+    @Test
+    @DisplayName("UUID 생성 속도 측정")
+    void test_7() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        for (int i = 0; i < 10_000; i++) {
+            System.out.println(UUID.randomUUID());
+        }
+        stopWatch.stop();
+
+        System.out.println(stopWatch.getTotalTimeMillis());
     }
 
 }
