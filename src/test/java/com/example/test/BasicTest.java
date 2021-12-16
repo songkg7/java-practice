@@ -6,7 +6,10 @@ import com.example.test.effectivejava.item59.OldRandom;
 import com.example.test.nullcheck.Human;
 import com.example.test.nullcheck.Money;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -98,6 +101,17 @@ class BasicTest {
     @DisplayName("불변 객체를 사용해야하는 이유 2")
     void test_5_2() {
         // how to immutable
+        List<Integer> integers = new ArrayList<>();
+        integers.add(1);
+        integers.add(2);
+        integers.add(3);
+
+        Map<String, List<Integer>> mutableList = new HashMap<>();
+        mutableList.put("A", integers);
+
+        integers.add(4);
+
+        System.out.println(mutableList);
     }
 
     @Test
