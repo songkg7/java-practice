@@ -1,5 +1,6 @@
 package com.example.test;
 
+import static java.util.stream.Collectors.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.test.effectivejava.item59.OldRandom;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
@@ -168,6 +170,17 @@ class BasicTest {
         stopWatch.stop();
 
         System.out.println(stopWatch.getTotalTimeMillis());
+    }
+
+    @Test
+    void test_8() {
+        List<Integer> integers = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> collect = integers.stream()
+                .filter(num -> num < 3)
+                .map(num -> num * 2)
+                .collect(toList());
+
+        System.out.println(collect);
     }
 
 }
