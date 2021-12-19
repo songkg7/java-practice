@@ -1,4 +1,4 @@
-package com.example.test.objects.chapter01;
+package com.example.test.objects.chapter01.theater;
 
 import java.time.LocalDateTime;
 
