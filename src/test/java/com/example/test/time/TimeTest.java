@@ -114,8 +114,8 @@ public class TimeTest {
         LocalDate time1 = LocalDate.of(2021, 1, 1);
         LocalDate time2 = LocalDate.of(2021, 1, 11);
 
-        // TODO: Duration test 추가
 //        Duration duration = Duration.between(time1, time2);
+        Duration duration = Duration.ofMinutes(120);
         Period tenDays = Period.between(time1, time2);
 
         // 좀 더 복잡한 날짜 조정
