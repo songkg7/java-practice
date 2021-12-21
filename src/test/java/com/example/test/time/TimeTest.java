@@ -11,10 +11,15 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.Period;
+import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
@@ -89,6 +94,7 @@ public class TimeTest {
 
         int dayOfYear = date.getDayOfYear();
         int dayOfMonth = date.getDayOfMonth();
+        YearMonth yearMonth = YearMonth.of(2022, 1);
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         Month month = date.getMonth();
         int monthValue = date.getMonthValue();
@@ -112,7 +118,7 @@ public class TimeTest {
 
         // 기간 - Durations, Period
         LocalDate time1 = LocalDate.of(2021, 1, 1);
-        LocalDate time2 = LocalDate.of(2021, 1, 11);
+        LocalDate time2 = LocalDate.of(2022, 1, 11);
 
 //        Duration duration = Duration.between(time1, time2);
         Duration duration = Duration.ofMinutes(120);
@@ -180,6 +186,17 @@ public class TimeTest {
         stopWatch.stop();
 
         System.out.println(stopWatch.prettyPrint());
+    }
+
+    @Test
+    void test_9() {
+
+        List<Map<String, Long>> list = new ArrayList<>();
+        Map<String, Long> map = new HashMap<>();
+        map.put("S", null);
+
+        list.add(map);
+
     }
 
 }
