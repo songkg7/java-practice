@@ -16,6 +16,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.util.StopWatch;
 
 class BasicTest {
@@ -181,6 +183,18 @@ class BasicTest {
                 .collect(toList());
 
         System.out.println(collect);
+    }
+
+    @Test
+    @DisplayName("MultiValueMap add vs set")
+    void multiValueMap() {
+        MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+
+        map.set("1", "surprise");
+        map.set("1", "list");
+        map.add("1", "treat");
+        map.set("2", "wave");
+        System.out.println(map);
     }
 
 }
