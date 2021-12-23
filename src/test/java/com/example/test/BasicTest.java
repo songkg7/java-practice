@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.example.test.effectivejava.item59.OldRandom;
 import com.example.test.nullcheck.Human;
 import com.example.test.nullcheck.Money;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -195,6 +196,20 @@ class BasicTest {
         map.add("1", "treat");
         map.set("2", "wave");
         System.out.println(map);
+    }
+
+    @Test
+    @DisplayName("Month enum class 기능 확인")
+    void test_10() {
+        Month april = Month.APRIL;
+        int i = april.ordinal();
+        int value = april.getValue();
+        int length = april.length(true);
+
+        System.out.println(i);
+        System.out.println("value = " + value);
+        System.out.println("length = " + length);
+
     }
 
 }
