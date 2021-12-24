@@ -6,7 +6,7 @@ import com.example.test.objects.chapter01.movie.domain.Screening;
 import lombok.ToString;
 
 @ToString
-public class PercentDiscountPolicy extends DiscountPolicy {
+public class PercentDiscountPolicy extends DefaultDiscountPolicy {
 
     private double percent;
 
