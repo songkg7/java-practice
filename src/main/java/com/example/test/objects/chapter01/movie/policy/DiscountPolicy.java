@@ -17,6 +17,10 @@ public abstract class DiscountPolicy {
         this.conditions = Arrays.asList(conditions);
     }
 
+    /**
+     * NOTE: NoneDiscountPolicy 의 경우 return 값에 상관없이 Money.ZERO 가 return 된다.
+     * 개념이 일치하지 않는 현상으로 이에 따른 해결방법은 DiscountPolicy 를 interface 로 선언하는 것이다.
+     */
     public Money calculateDiscountAmount(Screening screening) {
         for (DiscountCondition condition : conditions) {
             if (condition.isSatisfiedBy(screening)) {
