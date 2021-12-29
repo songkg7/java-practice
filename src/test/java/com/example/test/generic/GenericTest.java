@@ -1,7 +1,7 @@
 package com.example.test.generic;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import com.example.test.basic.generic.BClazz;
+import com.example.test.basic.generic.Generic;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 

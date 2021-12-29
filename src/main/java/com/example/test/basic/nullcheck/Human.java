@@ -1,10 +1,8 @@
-package com.example.test.nullcheck;
+package com.example.test.basic.nullcheck;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Data
 @NoArgsConstructor

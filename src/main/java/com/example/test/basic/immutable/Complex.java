@@ -1,4 +1,4 @@
-package com.example.test.immutable;
+package com.example.test.basic.immutable;
 
 import lombok.Getter;
 

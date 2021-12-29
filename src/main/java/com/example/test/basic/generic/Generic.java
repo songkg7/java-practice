@@ -1,8 +1,4 @@
-package com.example.test.generic;
-
-import java.time.LocalDateTime;
-import lombok.Getter;
-import lombok.Setter;
+package com.example.test.basic.generic;
 
 public class Generic<T extends TimeClazz> {
 

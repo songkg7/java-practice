@@ -1,4 +1,4 @@
-package com.example.test.nullcheck;
+package com.example.test.basic.nullcheck;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

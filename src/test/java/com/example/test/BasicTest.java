@@ -3,9 +3,10 @@ package com.example.test;
 import static java.util.stream.Collectors.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.example.test.basic.flatmap.Student;
 import com.example.test.effectivejava.item59.OldRandom;
-import com.example.test.nullcheck.Human;
-import com.example.test.nullcheck.Money;
+import com.example.test.basic.nullcheck.Human;
+import com.example.test.basic.nullcheck.Money;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.LinkedMultiValueMap;
@@ -210,6 +212,54 @@ class BasicTest {
         System.out.println("value = " + value);
         System.out.println("length = " + length);
 
+    }
+
+    @Test
+    void flatMap() {
+        Stream<String[]> strStream = Stream.of( new String[] {"a", "b", "c"}, new String[] {"d", "e", "f"});
+
+        // map 을 사용하면 2중 스트림이 반환됨
+        Stream<Stream<String>> streamStream = strStream.map(Arrays::stream);
+
+        // flatMap 을 사용하면 1중 스트림으로 차원을 한 단계 낮출 수 있음
+        Stream<String> stringStream = strStream.flatMap(Arrays::stream);
+    }
+
+    @Test
+    void flatMap_2() {
+        List<String> lists = Arrays.asList("Hello", "World");
+        List<String[]> collect = lists.stream()
+                .map(s -> s.split(""))
+                .distinct()
+                .collect(toList());
+
+        System.out.println("collect = " + collect);
+    }
+
+    @Test
+    void flatMap_3() {
+        List<String> lists = Arrays.asList("Hello", "World");
+        List<String> collect = lists.stream()
+                .map(s -> s.split(""))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .collect(toList());
+
+        System.out.println("collect = " + collect);
+    }
+
+    @Test
+    void flatMap_4() {
+        Student student1 = Student.from(90, 80, 70);
+        Student student2 = Student.from(89, 100, 67);
+        Student student3 = Student.from(48, 70, 98);
+        Student student4 = Student.from(97, 83, 89);
+        List<Student> students = Arrays.asList(student1, student2, student3, student4);
+
+        students.stream()
+                .flatMapToInt(student -> IntStream.of(student.getKor(), student.getEng(), student.getMath()))
+                .average()
+                .ifPresent(avg -> System.out.println(Math.round(avg * 10) / 10.0));
     }
 
 }

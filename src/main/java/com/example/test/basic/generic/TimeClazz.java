@@ -1,4 +1,4 @@
-package com.example.test.generic;
+package com.example.test.basic.generic;
 
 import java.time.LocalDateTime;
 import lombok.Getter;
