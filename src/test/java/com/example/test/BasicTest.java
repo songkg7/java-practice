@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
@@ -260,6 +261,60 @@ class BasicTest {
                 .flatMapToInt(student -> IntStream.of(student.getKor(), student.getEng(), student.getMath()))
                 .average()
                 .ifPresent(avg -> System.out.println(Math.round(avg * 10) / 10.0));
+    }
+
+    @Test
+    void reduce() {
+        List<Integer> lists = Arrays.asList(1, 2, 3, 4, 5);
+        Integer result = lists.stream()
+                .reduce(Integer::sum)
+                .get();
+
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    void reduce_1() {
+        OptionalInt result = IntStream.range(1, 4)
+                .reduce((a, b) -> {
+                    return Integer.sum(a, b);
+                });
+
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    void reduce_2() {
+        int result = IntStream.range(1, 4)
+                .reduce(10, (a, b) -> {
+                    return Integer.sum(a, b);
+                });
+
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    @DisplayName("병렬 처리가 아니면 combiner 는 실행되지 않는다.")
+    void reduce_3() {
+        Integer result = Stream.of(1, 2, 3)
+                .reduce(10, Integer::sum, (a, b) -> {
+                    System.out.println("Combiner was called.");
+                    return a + b;
+                });
+
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    void reduce_4() {
+        Integer result = Stream.of(1, 2, 3)
+                .parallel()
+                .reduce(10, Integer::sum, (a, b) -> {
+                    System.out.println("Combiner was called.");
+                    return a + b;
+                });
+
+        System.out.println("result = " + result);
     }
 
 }
