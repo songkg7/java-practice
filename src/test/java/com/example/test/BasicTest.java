@@ -317,4 +317,57 @@ class BasicTest {
         System.out.println("result = " + result);
     }
 
+    @Test
+    void stream() {
+        Stream.of("a", "b", "c", "d", "e")
+                .filter(s -> {
+                    System.out.println("filter : " + s);
+                    return true;
+                })
+                .forEach(s -> System.out.println("forEach : " + s));
+    }
+
+    @Test
+    void stream_1() {
+        Stream.of("a", "b", "c", "a", "e")
+                .map(s -> {
+                    System.out.println("map : " + s);
+                    return s.toUpperCase();
+                })
+                .anyMatch(s -> {
+                    System.out.println("anyMatch : " + s);
+                    return s.startsWith("A");
+                });
+    }
+
+    @Test
+    @DisplayName("실행 순서에 대한 고려 - map 우선")
+    void stream_7() {
+        Stream.of("a", "b", "c", "d", "e")
+                .map(s -> {
+                    System.out.println("map: " + s);
+                    return s.toUpperCase();
+                })
+                .filter(s -> {
+                    System.out.println("filter: " + s);
+                    return s.startsWith("A");
+                })
+                .forEach(s -> System.out.println("forEach: " + s));
+    }
+
+    @Test
+    @DisplayName("실행 순서에 대한 고려 - filter 우선")
+    void stream_8() {
+        Stream.of("a", "b", "c", "d", "e")
+                .filter(s -> {
+                    System.out.println("filter: " + s);
+                    return s.startsWith("a");
+                })
+                .map(s -> {
+                    System.out.println("map: " + s);
+                    return s.toUpperCase();
+                })
+                .forEach(s -> System.out.println("forEach: " + s));
+    }
+
 }
