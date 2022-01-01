@@ -196,7 +196,13 @@ public class StreamQuizTest {
             @Test
             @DisplayName("서울에서 근무하는 모든 거래자를 찾아서 이름순서대로 정렬하라.")
             void quiz_3() {
+                List<Trader> result = transactions.stream()
+                        .map(Transaction::getTrader)
+                        .filter(trader -> trader.getCity().equals(SEOUL))
+                        .sorted(Comparator.comparing(Trader::getName))
+                        .collect(toList());
 
+                System.out.println("result = " + result);
             }
 
             @Test
