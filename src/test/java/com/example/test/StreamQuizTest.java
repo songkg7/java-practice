@@ -1,6 +1,7 @@
 package com.example.test;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -108,6 +109,38 @@ public class StreamQuizTest {
 
     }
 
+    @Nested
+    class Quiz3Test {
 
+        private final List<Integer> numbers1 = Arrays.asList(1, 2, 3);
+        private final List<Integer> numbers2 = Arrays.asList(3, 4);
+
+        @Test
+        @DisplayName("두 리스트의 모든 숫자 조합을 출력하라")
+        void quiz_1() {
+            List<Integer[]> nums = numbers1.stream()
+                    .flatMap(i -> numbers2.stream().map(j -> new Integer[]{ i, j }))
+                    .collect(toList());
+
+            nums.forEach(a -> System.out.println(Arrays.toString(a)));
+        }
+
+        @Test
+        @DisplayName("모든 숫자 조합의 곱 중 가장 큰 값을 출력하라")
+        void quiz_2() {
+            int result = numbers1.stream()
+                    .flatMap(i -> numbers2.stream().map(j -> new Integer[]{ i, j }))
+                    .mapToInt(a -> multiply(a[0], a[1]))
+                    .max()
+                    .getAsInt();
+
+            System.out.println("result = " + result);
+        }
+
+        private int multiply(int a, int b) {
+            return a * b;
+        }
+
+    }
 
 }
