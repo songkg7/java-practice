@@ -208,7 +208,10 @@ public class StreamQuizTest {
             @Test
             @DisplayName("모든 거래자의 이름을 순서대로 정렬하라.")
             void quiz_4() {
-
+                transactions.stream()
+                        .map(Transaction::getTrader)
+                        .sorted(Comparator.comparing(Trader::getName))
+                        .forEach(System.out::println);
             }
 
             @Test
