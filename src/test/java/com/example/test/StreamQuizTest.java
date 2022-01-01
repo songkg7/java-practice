@@ -6,6 +6,7 @@ import static com.example.test.basic.stream.City.SEOUL;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+import com.example.test.basic.stream.City;
 import com.example.test.basic.stream.Trader;
 import com.example.test.basic.stream.Transaction;
 import com.example.test.objects.chapter01.movie.domain.Money;
@@ -184,7 +185,12 @@ public class StreamQuizTest {
             @Test
             @DisplayName("거래 내역이 있는 거래자가 근무하는 모든 도시를 중복없이 나열하라.")
             void quiz_2() {
+                List<City> result = transactions.stream()
+                        .map(transaction -> transaction.getTrader().getCity())
+                        .distinct()
+                        .collect(toList());
 
+                System.out.println("result = " + result);
             }
 
             @Test
