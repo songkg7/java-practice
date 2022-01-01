@@ -15,6 +15,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -236,13 +237,23 @@ public class StreamQuizTest {
             }
 
             @Test
-            @DisplayName("모든 거래 내역 중에서 최댓값과 최솟값을 구하라. 단, 최댓값은 reduce 를 이용하고 최솟값은 stream 의 min 을 이용하라.")
+            @DisplayName("모든 거래 내역 중에서 최댓값과 최솟값을 구하라.")
             void quiz_7() {
+                BigDecimal maxValue = transactions.stream()
+                        .map(transaction -> transaction.getMoney().getAmount())
+                        .max(Comparator.naturalOrder())
+                        .orElse(BigDecimal.ZERO);
 
+                BigDecimal minValue = transactions.stream()
+                        .map(transaction -> transaction.getMoney().getAmount())
+                        .min(Comparator.naturalOrder())
+                        .orElse(BigDecimal.ZERO);
+
+                System.out.println("maxValue = " + maxValue);
+                System.out.println("minValue = " + minValue);
             }
 
         }
-
 
     }
 

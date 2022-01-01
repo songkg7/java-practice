@@ -1,8 +1,10 @@
 package com.example.test.objects.chapter01.movie.domain;
 
 import java.math.BigDecimal;
+import lombok.Getter;
 import lombok.ToString;
 
+@Getter
 @ToString
 public class Money implements Comparable<Money> {
 
