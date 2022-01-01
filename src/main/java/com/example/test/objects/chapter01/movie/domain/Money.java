@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import lombok.ToString;
 
 @ToString
-public class Money {
+public class Money implements Comparable<Money> {
 
     public static final Money ZERO = Money.wons(0);
 
@@ -40,6 +40,11 @@ public class Money {
 
     public boolean isGreaterThanOrEqual(Money other) {
         return amount.compareTo(other.amount) >= 0;
+    }
+
+    @Override
+    public int compareTo(Money other) {
+        return amount.compareTo(other.amount);
     }
 
 }

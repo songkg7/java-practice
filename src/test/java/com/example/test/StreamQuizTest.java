@@ -1,13 +1,22 @@
 package com.example.test;
 
+import static com.example.test.basic.stream.City.GYEONG_GI;
+import static com.example.test.basic.stream.City.INCHEAN;
+import static com.example.test.basic.stream.City.SEOUL;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+import com.example.test.basic.stream.Trader;
+import com.example.test.basic.stream.Transaction;
+import com.example.test.objects.chapter01.movie.domain.Money;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Year;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -140,6 +149,76 @@ public class StreamQuizTest {
         private int multiply(int a, int b) {
             return a * b;
         }
+
+        @Nested
+        class Quiz4Test {
+
+            List<Transaction> transactions = new ArrayList<>();
+
+            @BeforeEach
+            void setUp() {
+                Trader kyu = Trader.of("Kyu", SEOUL);
+                Trader ming = Trader.of("Ming", GYEONG_GI);
+                Trader hyuk = Trader.of("Hyuk", INCHEAN);
+                Trader song = Trader.of("Song", SEOUL);
+
+                transactions = List.of(Transaction.of(kyu, Year.of(2019), Money.wons(30000)),
+                        Transaction.of(kyu, Year.of(2020), Money.wons(12000)),
+                        Transaction.of(ming, Year.of(2020), Money.wons(40000)),
+                        Transaction.of(ming, Year.of(2020), Money.wons(7100)),
+                        Transaction.of(hyuk, Year.of(2019), Money.wons(5900)),
+                        Transaction.of(song, Year.of(2020), Money.wons(4900)));
+            }
+
+            @Test
+            @DisplayName("2020년에 일어난 모든 거래 내역을 찾아 거래값을 기준으로 오름차순 정렬하라.")
+            void quiz_1() {
+                List<Transaction> result = transactions.stream()
+                        .filter(transaction -> transaction.getYear().equals(Year.of(2020)))
+                        .sorted(Comparator.comparing(Transaction::getMoney).reversed())
+                        .collect(toList());
+
+                System.out.println("result = " + result);
+            }
+
+            @Test
+            @DisplayName("거래 내역이 있는 거래자가 근무하는 모든 도시를 중복없이 나열하라.")
+            void quiz_2() {
+
+            }
+
+            @Test
+            @DisplayName("서울에서 근무하는 모든 거래자를 찾아서 이름순서대로 정렬하라.")
+            void quiz_3() {
+
+            }
+
+            @Test
+            @DisplayName("모든 거래자의 이름을 순서대로 정렬하라.")
+            void quiz_4() {
+
+            }
+
+            @Test
+            @DisplayName("부산에 거래자가 있는지를 확인하라.")
+            void quiz_5() {
+
+            }
+
+            @Test
+            @DisplayName("서울에 거주하는 거래자의 모든 거래 내역을 구하라.")
+            void quiz_6() {
+
+            }
+
+            @Test
+            @DisplayName("모든 거래 내역 중에서 최댓값과 최솟값을 구하라. 단, 최댓값은 reduce 를 이용하고 최솟값은 stream 의 min 을 이용하라.")
+            void quiz_7() {
+
+            }
+
+        }
+
 
     }
 
