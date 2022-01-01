@@ -1,5 +1,6 @@
 package com.example.test;
 
+import static com.example.test.basic.stream.City.BUSAN;
 import static com.example.test.basic.stream.City.GYEONG_GI;
 import static com.example.test.basic.stream.City.INCHEAN;
 import static com.example.test.basic.stream.City.SEOUL;
@@ -217,7 +218,11 @@ public class StreamQuizTest {
             @Test
             @DisplayName("부산에 거래자가 있는지를 확인하라.")
             void quiz_5() {
+                boolean result = transactions.stream()
+                        .map(Transaction::getTrader)
+                        .anyMatch(trader -> trader.getCity().equals(BUSAN));
 
+                System.out.println("result = " + result);
             }
 
             @Test
