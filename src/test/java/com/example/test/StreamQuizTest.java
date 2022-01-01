@@ -228,7 +228,11 @@ public class StreamQuizTest {
             @Test
             @DisplayName("서울에 거주하는 거래자의 모든 거래 내역을 구하라.")
             void quiz_6() {
+                List<Transaction> result = transactions.stream()
+                        .filter(transaction -> transaction.getTrader().getCity().equals(SEOUL))
+                        .collect(toList());
 
+                System.out.println("result = " + result);
             }
 
             @Test
