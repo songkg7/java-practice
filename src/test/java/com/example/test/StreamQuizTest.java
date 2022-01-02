@@ -153,108 +153,154 @@ public class StreamQuizTest {
             return a * b;
         }
 
-        @Nested
-        class Quiz4Test {
+    }
 
-            List<Transaction> transactions = new ArrayList<>();
+    @Nested
+    class Quiz4Test {
 
-            @BeforeEach
-            void setUp() {
-                Trader kyu = Trader.of("Kyu", SEOUL);
-                Trader ming = Trader.of("Ming", GYEONG_GI);
-                Trader hyuk = Trader.of("Hyuk", INCHEAN);
-                Trader song = Trader.of("Song", SEOUL);
+        List<Transaction> transactions = new ArrayList<>();
 
-                transactions = List.of(Transaction.of(kyu, Year.of(2019), Money.wons(30000)),
-                        Transaction.of(kyu, Year.of(2020), Money.wons(12000)),
-                        Transaction.of(ming, Year.of(2020), Money.wons(40000)),
-                        Transaction.of(ming, Year.of(2020), Money.wons(7100)),
-                        Transaction.of(hyuk, Year.of(2019), Money.wons(5900)),
-                        Transaction.of(song, Year.of(2020), Money.wons(4900)));
-            }
+        @BeforeEach
+        void setUp() {
+            Trader kyu = Trader.of("Kyu", SEOUL);
+            Trader ming = Trader.of("Ming", GYEONG_GI);
+            Trader hyuk = Trader.of("Hyuk", INCHEAN);
+            Trader song = Trader.of("Song", SEOUL);
 
-            @Test
-            @DisplayName("2020년에 일어난 모든 거래 내역을 찾아 거래값을 기준으로 오름차순 정렬하라.")
-            void quiz_1() {
-                List<Transaction> result = transactions.stream()
-                        .filter(transaction -> transaction.getYear().equals(Year.of(2020)))
-                        .sorted(Comparator.comparing(Transaction::getMoney).reversed())
-                        .collect(toList());
+            transactions = List.of(Transaction.of(kyu, Year.of(2019), Money.wons(30000)),
+                    Transaction.of(kyu, Year.of(2020), Money.wons(12000)),
+                    Transaction.of(ming, Year.of(2020), Money.wons(40000)),
+                    Transaction.of(ming, Year.of(2020), Money.wons(7100)),
+                    Transaction.of(hyuk, Year.of(2019), Money.wons(5900)),
+                    Transaction.of(song, Year.of(2020), Money.wons(4900)));
+        }
 
-                System.out.println("result = " + result);
-            }
+        @Test
+        @DisplayName("2020년에 일어난 모든 거래 내역을 찾아 거래값을 기준으로 오름차순 정렬하라.")
+        void quiz_1() {
+            List<Transaction> result = transactions.stream()
+                    .filter(transaction -> transaction.getYear().equals(Year.of(2020)))
+                    .sorted(Comparator.comparing(Transaction::getMoney).reversed())
+                    .collect(toList());
 
-            @Test
-            @DisplayName("거래 내역이 있는 거래자가 근무하는 모든 도시를 중복없이 나열하라.")
-            void quiz_2() {
-                List<City> result = transactions.stream()
-                        .map(transaction -> transaction.getTrader().getCity())
-                        .distinct()
-                        .collect(toList());
+            System.out.println("result = " + result);
+        }
 
-                System.out.println("result = " + result);
-            }
+        @Test
+        @DisplayName("거래 내역이 있는 거래자가 근무하는 모든 도시를 중복없이 나열하라.")
+        void quiz_2() {
+            List<City> result = transactions.stream()
+                    .map(transaction -> transaction.getTrader().getCity())
+                    .distinct()
+                    .collect(toList());
 
-            @Test
-            @DisplayName("서울에서 근무하는 모든 거래자를 찾아서 이름순서대로 정렬하라.")
-            void quiz_3() {
-                List<Trader> result = transactions.stream()
-                        .map(Transaction::getTrader)
-                        .filter(trader -> trader.getCity().equals(SEOUL))
-                        .sorted(Comparator.comparing(Trader::getName))
-                        .collect(toList());
+            System.out.println("result = " + result);
+        }
 
-                System.out.println("result = " + result);
-            }
+        @Test
+        @DisplayName("서울에서 근무하는 모든 거래자를 찾아서 이름순서대로 정렬하라.")
+        void quiz_3() {
+            List<Trader> result = transactions.stream()
+                    .map(Transaction::getTrader)
+                    .filter(trader -> trader.getCity().equals(SEOUL))
+                    .sorted(Comparator.comparing(Trader::getName))
+                    .collect(toList());
 
-            @Test
-            @DisplayName("모든 거래자의 이름을 순서대로 정렬하라.")
-            void quiz_4() {
-                transactions.stream()
-                        .map(Transaction::getTrader)
-                        .sorted(Comparator.comparing(Trader::getName))
-                        .forEach(System.out::println);
-            }
+            System.out.println("result = " + result);
+        }
 
-            @Test
-            @DisplayName("부산에 거래자가 있는지를 확인하라.")
-            void quiz_5() {
-                boolean result = transactions.stream()
-                        .map(Transaction::getTrader)
-                        .anyMatch(trader -> trader.getCity().equals(BUSAN));
+        @Test
+        @DisplayName("모든 거래자의 이름을 순서대로 정렬하라.")
+        void quiz_4() {
+            transactions.stream()
+                    .map(Transaction::getTrader)
+                    .sorted(Comparator.comparing(Trader::getName))
+                    .forEach(System.out::println);
+        }
 
-                System.out.println("result = " + result);
-            }
+        @Test
+        @DisplayName("부산에 거래자가 있는지를 확인하라.")
+        void quiz_5() {
+            boolean result = transactions.stream()
+                    .map(Transaction::getTrader)
+                    .anyMatch(trader -> trader.getCity().equals(BUSAN));
 
-            @Test
-            @DisplayName("서울에 거주하는 거래자의 모든 거래 내역을 구하라.")
-            void quiz_6() {
-                List<Transaction> result = transactions.stream()
-                        .filter(transaction -> transaction.getTrader().getCity().equals(SEOUL))
-                        .collect(toList());
+            System.out.println("result = " + result);
+        }
 
-                System.out.println("result = " + result);
-            }
+        @Test
+        @DisplayName("서울에 거주하는 거래자의 모든 거래 내역을 구하라.")
+        void quiz_6() {
+            List<Transaction> result = transactions.stream()
+                    .filter(transaction -> transaction.getTrader().getCity().equals(SEOUL))
+                    .collect(toList());
 
-            @Test
-            @DisplayName("모든 거래 내역 중에서 최댓값과 최솟값을 구하라.")
-            void quiz_7() {
-                BigDecimal maxValue = transactions.stream()
-                        .map(transaction -> transaction.getMoney().getAmount())
-                        .max(Comparator.naturalOrder())
-                        .orElse(BigDecimal.ZERO);
+            System.out.println("result = " + result);
+        }
 
-                BigDecimal minValue = transactions.stream()
-                        .map(transaction -> transaction.getMoney().getAmount())
-                        .min(Comparator.naturalOrder())
-                        .orElse(BigDecimal.ZERO);
+        @Test
+        @DisplayName("모든 거래 내역 중에서 최댓값과 최솟값을 구하라.")
+        void quiz_7() {
+            BigDecimal maxValue = transactions.stream()
+                    .map(transaction -> transaction.getMoney().getAmount())
+                    .max(Comparator.naturalOrder())
+                    .orElse(BigDecimal.ZERO);
 
-                System.out.println("maxValue = " + maxValue);
-                System.out.println("minValue = " + minValue);
-            }
+            BigDecimal minValue = transactions.stream()
+                    .map(transaction -> transaction.getMoney().getAmount())
+                    .min(Comparator.naturalOrder())
+                    .orElse(BigDecimal.ZERO);
 
+            System.out.println("maxValue = " + maxValue);
+            System.out.println("minValue = " + minValue);
         }
 
     }
 
+    @Nested
+    class Quiz5Test {
+
+        private final String[] strings = { "aaa", "bb", "c", "dddd" };
+
+        @Test
+        @DisplayName("모든 문자열의 길이를 더한 결과를 출력하라.")
+        void quiz_1() {
+            int result = Arrays.stream(strings)
+                    .mapToInt(String::length)
+                    .sum();
+
+            System.out.println("result = " + result);
+        }
+
+        @Test
+        @DisplayName("가장 긴 것의 길이를 출력하라.")
+        void quiz_2() {
+            @SuppressWarnings("OptionalGetWithoutIsPresent")
+            int result = Arrays.stream(strings)
+                    .mapToInt(String::length)
+                    .max()
+                    .getAsInt();
+
+            System.out.println("result = " + result);
+        }
+
+        @Test
+        @DisplayName("임의의 로또번호(1~45)를 정렬해서 출력하라.")
+        void quiz_3() {
+
+        }
+
+        @Test
+        @DisplayName("두 개의 주사위를 굴려서 나온 눈의 합이 6인 경우를 모두 출력하라.")
+        void quiz_4() {
+
+        }
+
+        @Test
+        @DisplayName("special. primeNumber")
+        void quiz_5() {
+
+        }
+
+    }
 }
