@@ -1,4 +1,4 @@
-package com.example.test.basic.stream;
+package com.example.test.basic.stream.trade;
 
 import lombok.Value;
 

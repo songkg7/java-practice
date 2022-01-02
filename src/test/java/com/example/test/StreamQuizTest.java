@@ -1,15 +1,17 @@
 package com.example.test;
 
-import static com.example.test.basic.stream.City.BUSAN;
-import static com.example.test.basic.stream.City.GYEONG_GI;
-import static com.example.test.basic.stream.City.INCHEAN;
-import static com.example.test.basic.stream.City.SEOUL;
+import static com.example.test.basic.stream.trade.City.BUSAN;
+import static com.example.test.basic.stream.trade.City.GYEONG_GI;
+import static com.example.test.basic.stream.trade.City.INCHEAN;
+import static com.example.test.basic.stream.trade.City.SEOUL;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
-import com.example.test.basic.stream.City;
-import com.example.test.basic.stream.Trader;
-import com.example.test.basic.stream.Transaction;
+import com.example.test.basic.stream.dicegame.Dice;
+import com.example.test.basic.stream.dicegame.Game;
+import com.example.test.basic.stream.trade.City;
+import com.example.test.basic.stream.trade.Trader;
+import com.example.test.basic.stream.trade.Transaction;
 import com.example.test.objects.chapter01.movie.domain.Money;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -299,9 +301,11 @@ public class StreamQuizTest {
         }
 
         @Test
-        @DisplayName("두 개의 주사위를 굴려서 나온 눈의 합이 6인 경우를 모두 출력하라.")
+        @DisplayName("두 개의 주사위를 굴려서 나온 눈의 합이 6인 경우를 모두 출력하라. 주사위는 총 20번 던진다. 이 주사위 게임을 설계하여라.")
         void quiz_4() {
-
+            Game.ready(Dice.newInstance(), Dice.newInstance())
+                    .play()
+                    .printResult();
         }
 
         @Test

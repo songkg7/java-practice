@@ -1,4 +1,4 @@
-package com.example.test.basic.stream;
+package com.example.test.basic.stream.trade;
 
 import com.example.test.objects.chapter01.movie.domain.Money;
 import java.time.Year;
