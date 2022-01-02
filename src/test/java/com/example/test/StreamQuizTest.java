@@ -23,6 +23,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -286,9 +287,15 @@ public class StreamQuizTest {
         }
 
         @Test
-        @DisplayName("임의의 로또번호(1~45)를 정렬해서 출력하라.")
+        @DisplayName("중복되지 않는 임의의 로또번호(1~45) 6개를 출력하라.")
         void quiz_3() {
+            List<Integer> result = ThreadLocalRandom.current().ints(1, 46)
+                    .distinct()
+                    .limit(6)
+                    .boxed()
+                    .collect(toList());
 
+            System.out.println("result = " + result);
         }
 
         @Test
