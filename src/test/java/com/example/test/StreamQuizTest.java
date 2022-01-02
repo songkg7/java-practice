@@ -140,6 +140,7 @@ public class StreamQuizTest {
         @Test
         @DisplayName("모든 숫자 조합의 곱 중 가장 큰 값을 출력하라")
         void quiz_2() {
+            @SuppressWarnings("OptionalGetWithoutIsPresent")
             int result = numbers1.stream()
                     .flatMap(i -> numbers2.stream().map(j -> new Integer[]{ i, j }))
                     .mapToInt(a -> multiply(a[0], a[1]))
