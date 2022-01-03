@@ -4,9 +4,12 @@ import static com.example.test.basic.stream.trade.City.BUSAN;
 import static com.example.test.basic.stream.trade.City.GYEONG_GI;
 import static com.example.test.basic.stream.trade.City.INCHEAN;
 import static com.example.test.basic.stream.trade.City.SEOUL;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
 
+import com.example.test.basic.stream.Student;
 import com.example.test.basic.stream.dicegame.Dice;
 import com.example.test.basic.stream.dicegame.Game;
 import com.example.test.basic.stream.trade.City;
@@ -315,4 +318,50 @@ public class StreamQuizTest {
         }
 
     }
+
+    @Nested
+    class Quiz6Test {
+
+        private final List<Student> students = List.of(
+                Student.of("나자바", true, 1, 1, 300),
+                Student.of("김지미", false,1, 1, 250),
+                Student.of("김자바", true, 1, 1, 200),
+                Student.of("이지미", false, 1, 2, 150),
+                Student.of("남자바", true, 1, 2, 100),
+                Student.of("안지미", false, 1, 2, 50),
+                Student.of("황지미", false, 1, 3, 100),
+                Student.of("강지미", false, 1, 3, 150),
+                Student.of("이자바", true, 1, 3, 200),
+                Student.of("나자바", true, 2, 1, 300),
+                Student.of("김지미", false, 2, 1, 250),
+                Student.of("김자바", true, 2, 1, 200),
+                Student.of("이지미", false, 2, 2, 150),
+                Student.of("남자바", true, 2, 2, 100),
+                Student.of("안지미", false, 2, 2, 50),
+                Student.of("황지미", false, 2, 3, 100),
+                Student.of("강지미", false, 2, 3, 150),
+                Student.of("이자바", true, 2, 3, 200));
+
+        @Test
+        @DisplayName("불합격(150점 미만)한 학생의 수를 남자와 여자로 구분하라.")
+        void quiz_1() {
+            Map<Boolean, List<Student>> result = students.stream()
+                    .filter(student -> student.getScore() < 150)
+                    .collect(groupingBy(Student::isMale));
+
+            System.out.println("result = " + result);
+        }
+
+        @Test
+        @DisplayName("각 반별 총점을 학년 별로 나누어 구하라.")
+        void quiz_2() {
+            Map<Integer, Map<Integer, Integer>> result = students.stream()
+                    .collect(groupingBy(Student::getGrade,
+                            groupingBy(Student::getClazz, summingInt(Student::getScore))));
+
+            System.out.println("result = " + result);
+        }
+
+    }
+
 }
