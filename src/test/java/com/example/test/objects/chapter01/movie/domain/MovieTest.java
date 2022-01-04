@@ -1,11 +1,10 @@
 package com.example.test.objects.chapter01.movie.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.example.test.objects.chapter01.movie.condition.PeriodCondition;
 import com.example.test.objects.chapter01.movie.condition.SequenceCondition;
 import com.example.test.objects.chapter01.movie.policy.AmountDiscountPolicy;
 import com.example.test.objects.chapter01.movie.policy.NoneDiscountPolicy;
+import com.example.test.objects.chapter01.movie.policy.PercentDiscountPolicy;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -35,6 +34,13 @@ class MovieTest {
     @Test
     void test_2() {
         Movie starWars = new Movie("스타워즈", Duration.ofMinutes(210), Money.wons(10000), new NoneDiscountPolicy());
+    }
+
+    @Test
+    void test_3() {
+        Movie starWars = new Movie("스타워즈", Duration.ofMinutes(210), Money.wons(10000), new NoneDiscountPolicy());
+
+        starWars.changeDiscountPolicy(new PercentDiscountPolicy(50, new SequenceCondition(1)));
     }
 
 }
