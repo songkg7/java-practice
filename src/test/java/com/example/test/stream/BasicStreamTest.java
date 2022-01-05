@@ -72,4 +72,19 @@ public class BasicStreamTest {
                 .forEach(System.out::println);
     }
 
+    @Test
+    @DisplayName("limit")
+    void test_7() {
+        // limit 는 가져오는 데이터의 개수를 제한한다.
+        Stream.generate(Math::random).limit(5).forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("skip")
+    void test_8() {
+        // skip 은 데이터를 건너뛰는 처리를 한다.
+        List<Integer> integers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        integers.stream().skip(5).forEach(System.out::println);
+    }
+
 }
