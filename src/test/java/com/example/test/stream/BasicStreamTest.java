@@ -1,9 +1,14 @@
 package com.example.test.stream;
 
+import static java.util.stream.Collectors.averagingInt;
+import static java.util.stream.Collectors.toSet;
+
 import com.example.test.basic.stream.Student;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -228,5 +233,29 @@ public class BasicStreamTest {
                 .parallel()
                 .reduce(0, Integer::sum, Integer::sum); // 마지막 파라미터값으로 첫번째 연산과 두번째 연산은 합해야한다는 규칙을 적용한다.
         System.out.println("fluentResult = " + fluentResult);
+    }
+
+    @Test
+    @DisplayName("collect")
+    void test_15() {
+        Stream<String> strings = Stream.of("end", "liberty", "parcel", "top", "step");
+        HashSet<String> stringSet = strings.collect(HashSet::new, HashSet::add, HashSet::addAll);
+        stringSet.forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("collect - Collector 의 사용")
+    void test_15_1() {
+        Stream<String> strings = Stream.of("uncle", "instant", "dive", "print", "pride");
+        Set<String> set = strings.collect(toSet());
+        System.out.println("set = " + set);
+    }
+
+    @Test
+    @DisplayName("collect - 평균값")
+    void test_15_2() {
+        List<Integer> list = List.of(1, 2, 3, 4);
+        Double result = list.stream().collect(averagingInt(value -> value * 2));
+        System.out.println("result = " + result);
     }
 }
