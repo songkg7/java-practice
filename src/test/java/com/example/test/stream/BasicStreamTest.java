@@ -105,4 +105,13 @@ public class BasicStreamTest {
         List<Student> students = List.of(student1, student2);
         students.stream().distinct().forEach(System.out::println);
     }
+
+    @Test
+    @DisplayName("concat - 사슬같이 이어진")
+    void test_10() {
+        List<String> list1 = List.of("1", "2", "3", "4", "5");
+        List<String> list2 = List.of("due", "caution", "rid", "suggest", "inside");
+
+        Stream.concat(list1.stream(), list2.stream()).forEach(System.out::println);
+    }
 }
