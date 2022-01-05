@@ -1,5 +1,6 @@
 package com.example.test.stream;
 
+import com.example.test.basic.stream.Student;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
@@ -87,4 +88,21 @@ public class BasicStreamTest {
         integers.stream().skip(5).forEach(System.out::println);
     }
 
+    @Test
+    @DisplayName("distinct - equals and hashCode 를 사용한 중복의 제거")
+    void test_9() {
+        // distinct 는 equals and hashCode 를 사용하기 때문에 재정의되지 않은 객체는 의도한대로 동작하지 않을 수 있다.
+        List<String> list = List.of("google", "apple", "google", "apple", "samsung");
+        list.stream().distinct().forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("equalsAndHashCode 가 재정의되야 distinct 가 동작한다.")
+    void test_9_1() {
+        Student student1 = Student.of("song", true, 1, 1, 90);
+        Student student2 = Student.of("song", true, 1, 1, 90);
+
+        List<Student> students = List.of(student1, student2);
+        students.stream().distinct().forEach(System.out::println);
+    }
 }
