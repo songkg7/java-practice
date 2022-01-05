@@ -167,4 +167,30 @@ public class BasicStreamTest {
         System.out.println("min:");
         list.stream().min(String::compareToIgnoreCase).ifPresent(System.out::println);
     }
+
+    @Test
+    @DisplayName("find and match")
+    void test_13() {
+        List<String> list = List.of("a", "a1", "b", "b1", "c", "c1");
+        // stream 은 싱글 스레드에서 동작하므로 첫번째 아이템부터 탐색하여 b 가 출력된다.
+        System.out.println("single thread:");
+        list.stream().filter(s -> s.startsWith("b")).findFirst().ifPresent(System.out::println);
+        list.stream().filter(s -> s.startsWith("b")).findAny().ifPresent(System.out::println);
+
+        printNewLine();
+        System.out.println("병렬 처리시:");
+        // findFirst 는 병렬로 처리해도 순서에 우선순위를 두어 결과를 리턴해준다.
+        list.stream().parallel().filter(s -> s.startsWith("b")).findFirst().ifPresent(System.out::println);
+        list.stream().parallel().filter(s -> s.startsWith("b")).findAny().ifPresent(System.out::println);
+
+        printNewLine();
+        boolean allMatch = list.stream().allMatch(s -> s.startsWith("b"));
+        System.out.println("allMatch: " + allMatch);
+
+        boolean anyMatch = list.stream().anyMatch(s -> s.startsWith("b"));
+        System.out.println("anyMatch: " + anyMatch);
+
+        boolean noneMatch = list.stream().noneMatch(s -> s.startsWith("b"));
+        System.out.println("noneMatch: " + noneMatch);
+    }
 }
