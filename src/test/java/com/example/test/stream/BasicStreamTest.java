@@ -2,6 +2,7 @@ package com.example.test.stream;
 
 import com.example.test.basic.stream.Student;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -113,5 +114,45 @@ public class BasicStreamTest {
         List<String> list2 = List.of("due", "caution", "rid", "suggest", "inside");
 
         Stream.concat(list1.stream(), list2.stream()).forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("sorted - Comparable 이 구현되어 있어야 사용가능!")
+    void test_11() {
+        List<String> list = List.of("upright", "south", "some", "date", "inward");
+        System.out.println("sorted:");
+        list.stream().sorted().forEach(System.out::println);
+
+        printNewLine();
+        System.out.println("reversed:");
+        list.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
+    }
+
+    private void printNewLine() {
+        System.out.println();
+    }
+
+    @Test
+    @DisplayName("sorted - Comparable 을 구현하지 않았을 경우")
+    void test_11_1() {
+        List<String> list = List.of("behind", "officer", "stick", "dull", "correct");
+        list.stream().sorted(Comparator.comparing(String::length)).forEach(System.out::println);
+
+        printNewLine();
+        System.out.println("reversed:");
+        list.stream().sorted(Comparator.comparing(String::length).reversed()).forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("sorted - 직접 Comparator 를 구현하는 경우")
+    void test_11_2() {
+        List<String> list = List.of("rule", "offer", "ever", "bite", "except");
+        //noinspection ComparatorCombinators
+        Comparator<String> comparator = (s1, s2) -> Integer.compare(s1.length(), s2.length());
+        list.stream().sorted(comparator).forEach(System.out::println);
+
+        printNewLine();
+        System.out.println("reversed:");
+        list.stream().sorted(comparator.reversed()).forEach(System.out::println);
     }
 }
