@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.test.stream;
 
 import static com.example.test.basic.stream.trade.City.BUSAN;
 import static com.example.test.basic.stream.trade.City.GYEONG_GI;
