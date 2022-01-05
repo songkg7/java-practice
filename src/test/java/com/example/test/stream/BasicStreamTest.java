@@ -155,4 +155,16 @@ public class BasicStreamTest {
         System.out.println("reversed:");
         list.stream().sorted(comparator.reversed()).forEach(System.out::println);
     }
+
+    @Test
+    @DisplayName("max and min")
+    void test_12() {
+        List<String> list = List.of("gate", "radio", "attempt", "question", "ease");
+        System.out.println("max:");
+        list.stream().max(String::compareToIgnoreCase).ifPresent(System.out::println);
+
+        printNewLine();
+        System.out.println("min:");
+        list.stream().min(String::compareToIgnoreCase).ifPresent(System.out::println);
+    }
 }
