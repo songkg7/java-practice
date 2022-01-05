@@ -193,4 +193,40 @@ public class BasicStreamTest {
         boolean noneMatch = list.stream().noneMatch(s -> s.startsWith("b"));
         System.out.println("noneMatch: " + noneMatch);
     }
+
+    @Test
+    @DisplayName("reduction")
+    void test_14() {
+        Stream.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                .reduce(Integer::sum)
+                .ifPresent(System.out::println);
+
+        // 초기값 있는 reduce
+        printNewLine();
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        Integer result = list.stream()
+                .reduce(10, Integer::sum);
+        System.out.println("result = " + result);
+
+        // 병렬처리
+        // 병렬처리시 초기값은 각 스트림 연산에 모두 적용된다.
+        printNewLine();
+        Integer parallelResult = list.stream()
+                .parallel()
+                .reduce(10, Integer::sum);
+        System.out.println("parallelResult = " + parallelResult);
+
+        printNewLine();
+        Integer minusResult = list.stream()
+                .parallel()
+                .reduce(0, (v1, v2) -> v1 - v2);
+        System.out.println("minusResult = " + minusResult);
+
+        // 순서있는 병렬 연산
+        printNewLine();
+        Integer fluentResult = list.stream()
+                .parallel()
+                .reduce(0, Integer::sum, Integer::sum); // 마지막 파라미터값으로 첫번째 연산과 두번째 연산은 합해야한다는 규칙을 적용한다.
+        System.out.println("fluentResult = " + fluentResult);
+    }
 }
