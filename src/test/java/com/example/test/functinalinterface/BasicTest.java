@@ -1,10 +1,17 @@
 package com.example.test.functinalinterface;
 
+import com.example.test.basic.stream.Student;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiFunction;
+import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
+import java.util.function.DoubleSupplier;
 import java.util.function.Function;
+import java.util.function.IntSupplier;
+import java.util.function.LongSupplier;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -87,5 +94,54 @@ public class BasicTest {
     public static String powAndReturnString(int num1, int num2, Function<Double, String> funcConvert) {
         BiFunction<Integer, Integer, Double> funcPow = Math::pow;
         return funcPow.andThen(funcConvert).apply(num1, num2);
+    }
+
+    @Test
+    @DisplayName("Supplier")
+    void test_3() {
+        Supplier<String> supplier = () -> "Hello, world!";
+        String result = supplier.get();
+        System.out.println("result = " + result);
+
+        Supplier<String> helloSupplier = this::printHelloWorld;
+        String result1 = helloSupplier.get();
+        System.out.println("result1 = " + result1);
+    }
+
+    private String printHelloWorld() {
+        return "Hello, world!";
+    }
+
+    @Test
+    @DisplayName("Supplier - 어떤 객체도 리턴받을 수 있다.")
+    void test_3_1() {
+        Supplier<Student> supplier = () -> Student.of("song", true, 1, 2, 100);
+        Student student = supplier.get();
+        System.out.println("student = " + student);
+    }
+
+    @Test
+    @DisplayName("Primitive Supplier")
+    void test_3_2() {
+        String hello = "hello";
+        //noinspection ConstantConditions
+        BooleanSupplier booleanSupplier = () -> hello.equals("world!");
+        IntSupplier intSupplier = hello::length;
+        LongSupplier longSupplier = hello::length;
+        DoubleSupplier doubleSupplier = () -> 12.34 - hello.length();
+
+        System.out.println("booleanSupplier = " + booleanSupplier.getAsBoolean());
+        System.out.println("intSupplier = " + intSupplier.getAsInt());
+        System.out.println("longSupplier = " + longSupplier.getAsLong());
+        System.out.println("doubleSupplier = " + doubleSupplier.getAsDouble());
+    }
+
+    @Test
+    @DisplayName("Supplier with Stream.generate()")
+    void test3_3() {
+        Supplier<Integer> randomSupplier = () -> ThreadLocalRandom.current().nextInt(100);
+        Stream.generate(randomSupplier)
+                .limit(5)
+                .forEach(System.out::println);
     }
 }
