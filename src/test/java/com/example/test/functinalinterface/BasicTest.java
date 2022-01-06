@@ -11,6 +11,7 @@ import java.util.function.IntSupplier;
 import java.util.function.LongSupplier;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -143,5 +144,65 @@ public class BasicTest {
         Stream.generate(randomSupplier)
                 .limit(5)
                 .forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("Predicate")
+    void test_4() {
+        Predicate<Integer> predicate = num -> num > 10;
+        boolean result = predicate.test(100);
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    @DisplayName("Predicate - and, or")
+    void test_4_1() {
+        Predicate<Integer> predicate1 = num -> num > 10;
+        Predicate<Integer> predicate2 = num -> num < 20;
+
+        boolean result1 = predicate1.and(predicate2).test(25);
+        System.out.println("result1 = " + result1);
+
+        boolean result2 = predicate1.and(predicate2).test(15);
+        System.out.println("result2 = " + result2);
+
+        boolean result3 = predicate1.or(predicate2).test(25);
+        System.out.println("result3 = " + result3);
+
+        boolean result4 = predicate1.or(predicate2).test(15);
+        System.out.println("result4 = " + result4);
+    }
+
+    @Test
+    @DisplayName("Predicate - isEquals, negate")
+    void test_4_2() {
+        IntStream.range(1, 10)
+                .boxed()
+                .filter(Predicate.isEqual(5))
+                .forEach(System.out::println);
+
+        printSeparateLine();
+        Predicate<Integer> predicate = num -> num > 10;
+        Predicate<Integer> negate = predicate.negate();
+
+        boolean result = predicate.test(100);
+        System.out.println("result = " + result);
+
+        boolean result2 = negate.test(100);
+        System.out.println("result2 = " + result2);
+        printSeparateLine();
+    }
+
+    private void printSeparateLine() {
+        System.out.println("---------------------");
+    }
+
+    @Test
+    @DisplayName("Predicate - in Stream")
+    void test_4_3() {
+        Stream<Integer> stream = IntStream.range(1, 10).boxed();
+        Predicate<Integer> predicate = num -> num < 5;
+
+        stream.filter(predicate).forEach(System.out::println);
     }
 }
