@@ -3,6 +3,7 @@ package com.example.test.functinalinterface;
 import com.example.test.basic.stream.Student;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.DoubleSupplier;
@@ -11,6 +12,7 @@ import java.util.function.IntSupplier;
 import java.util.function.LongSupplier;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -204,5 +206,25 @@ public class BasicTest {
         Predicate<Integer> predicate = num -> num < 5;
 
         stream.filter(predicate).forEach(System.out::println);
+    }
+
+    @Test
+    @DisplayName("UnaryOperator")
+    void test_5() {
+        UnaryOperator<Integer> unaryOperator = n -> n * n;
+        Integer result = unaryOperator.apply(10);
+        System.out.println("result = " + result);
+
+        UnaryOperator<Boolean> unaryOperator1 = b -> !b;
+        Boolean result1 = unaryOperator1.apply(false);
+        System.out.println("result1 = " + result1);
+    }
+
+    @Test
+    @DisplayName("binaryOperator")
+    void test_6() {
+        BinaryOperator<Integer> binaryOperator = (n1, n2) -> n1 * n2;
+        Integer result = binaryOperator.apply(2, 5);
+        System.out.println("result = " + result);
     }
 }

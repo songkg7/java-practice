@@ -4,6 +4,9 @@ import static com.example.test.basic.stream.trade.City.BUSAN;
 import static com.example.test.basic.stream.trade.City.GYEONG_GI;
 import static com.example.test.basic.stream.trade.City.INCHEAN;
 import static com.example.test.basic.stream.trade.City.SEOUL;
+import static com.example.test.effectivejava.item45.MersennePrime.primes;
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.TWO;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.summingInt;
@@ -312,9 +315,12 @@ public class StreamQuizTest {
         }
 
         @Test
-        @DisplayName("special. primeNumber")
+        @DisplayName("special. mersennePrime")
         void quiz_5() {
-
+            primes().map(prime -> TWO.pow(prime.intValueExact()).subtract(ONE))
+                    .filter(mersenne -> mersenne.isProbablePrime(50))
+                    .limit(20)
+                    .forEach(mp -> System.out.println(mp.bitLength() + ": " + mp));
         }
 
     }
