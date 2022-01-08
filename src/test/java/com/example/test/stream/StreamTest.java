@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.test.stream;
 
 import static java.util.stream.Collectors.toList;
 
