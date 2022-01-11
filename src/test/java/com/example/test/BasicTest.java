@@ -1,23 +1,20 @@
 package com.example.test;
 
-import static java.util.stream.Collectors.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static java.util.stream.Collectors.toList;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.example.test.basic.flatmap.Student;
-import com.example.test.effectivejava.item59.OldRandom;
 import com.example.test.basic.nullcheck.Human;
 import com.example.test.basic.nullcheck.Money;
+import com.example.test.effectivejava.item59.OldRandom;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.OptionalInt;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.LinkedMultiValueMap;
@@ -198,6 +195,8 @@ class BasicTest {
         map.set("1", "list");
         map.add("1", "treat");
         map.set("2", "wave");
+        map.set("2", "wave2");
+        map.add("3", "wave3");
         System.out.println(map);
     }
 
