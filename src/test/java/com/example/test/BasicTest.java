@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -214,4 +215,16 @@ class BasicTest {
 
     }
 
+    @Test
+    @DisplayName("대소문자 변환")
+    void toCase() {
+        String kor = "ㄱ";
+        String eng = "r";
+
+        System.out.println("kor = " + kor.toUpperCase());
+        System.out.println("kor = " + kor.toUpperCase(Locale.ROOT));
+
+        System.out.println("eng = " + eng.toUpperCase());
+        System.out.println("eng = " + eng.toUpperCase(Locale.ROOT));
+    }
 }
