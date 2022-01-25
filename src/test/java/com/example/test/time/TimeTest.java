@@ -14,6 +14,7 @@ import java.time.Period;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -95,6 +96,11 @@ public class TimeTest {
         int dayOfYear = date.getDayOfYear();
         int dayOfMonth = date.getDayOfMonth();
         YearMonth yearMonth = YearMonth.of(2022, 1);
+        YearMonth parse1 = YearMonth.parse("2022-01");
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyyMM");
+        YearMonth parse2 = YearMonth.parse("202201", f);
+        String parse2String = parse2.format(f);
+
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         Month month = date.getMonth();
         int monthValue = date.getMonthValue();
@@ -175,6 +181,10 @@ public class TimeTest {
         System.out.println("dateTime3 = " + dateTime3);
         System.out.println("=============================");
         System.out.println("add -3 = " + LocalDateTime.now().plusHours(-3));
+
+        System.out.println("String to yearMonth = " + parse1);
+        System.out.println("String to yearMonth = " + parse2);
+        System.out.println("yearMonth to String = " + parse2String);
     }
 
     @Test
