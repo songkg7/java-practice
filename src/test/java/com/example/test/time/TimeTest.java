@@ -101,6 +101,10 @@ public class TimeTest {
         YearMonth parse2 = YearMonth.parse("202201", f);
         String parse2String = parse2.format(f);
 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        LocalDate parse3 = LocalDate.parse("20220125", formatter);
+
+
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         Month month = date.getMonth();
         int monthValue = date.getMonthValue();

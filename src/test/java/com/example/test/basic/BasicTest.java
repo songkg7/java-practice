@@ -1,9 +1,11 @@
-package com.example.test;
+package com.example.test.basic;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.example.test.TestClass;
+import com.example.test.TestInterface;
 import com.example.test.basic.nullcheck.Human;
 import com.example.test.basic.nullcheck.Money;
 import com.example.test.effectivejava.item59.OldRandom;
@@ -226,5 +228,13 @@ class BasicTest {
 
         System.out.println("eng = " + eng.toUpperCase());
         System.out.println("eng = " + eng.toUpperCase(Locale.ROOT));
+    }
+
+    @Test
+    void remove_list() {
+        List<String> list = List.of("punctual", "grind", "puzzle", "mistake", "pretty");
+        List<String> strings = new ArrayList<>(list);
+        String element = strings.remove(0);
+        System.out.println("strings = " + strings);
     }
 }
