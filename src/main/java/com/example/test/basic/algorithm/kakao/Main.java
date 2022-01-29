@@ -2,6 +2,8 @@ package com.example.test.basic.algorithm.kakao;
 
 import static java.util.stream.Collectors.toList;
 
+import com.example.test.basic.algorithm.kakao.domain.Account;
+import com.example.test.basic.algorithm.kakao.domain.Accounts;
 import java.util.Arrays;
 
 public class Main {
@@ -9,11 +11,6 @@ public class Main {
         String[] idList = { "muzi", "frodo", "apeach", "neo" };
         String[] report = { "muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi" };
         int k = 2;
-
-//        String[] idList = { "con", "ryan" };
-//        String[] report = { "ryan con", "ryan con", "ryan con", "ryan con" };
-//        int k = 3;
-
 
         int[] solution = new Solution().solution(idList, report, k);
         System.out.println(Arrays.toString(solution));

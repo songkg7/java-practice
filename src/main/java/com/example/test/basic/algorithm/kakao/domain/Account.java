@@ -1,4 +1,4 @@
-package com.example.test.basic.algorithm.kakao;
+package com.example.test.basic.algorithm.kakao.domain;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -22,7 +22,7 @@ public class Account {
         return new Account(name);
     }
 
-    void report(Account account) {
+    public void report(Account account) {
         if (accountReport.add(account)) {
             account.reported++;
         }
@@ -32,13 +32,13 @@ public class Account {
         return Objects.equals(this.name, name);
     }
 
-    boolean isBanned(int limitCount) {
-        return reported >= limitCount;
-    }
-
     long receiveMailCount(int limitCount) {
         return accountReport.stream()
                 .filter(account -> account.isBanned(limitCount))
                 .count();
+    }
+
+    boolean isBanned(int limitCount) {
+        return reported >= limitCount;
     }
 }

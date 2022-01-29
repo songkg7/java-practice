@@ -1,4 +1,4 @@
-package com.example.test.basic.algorithm.kakao;
+package com.example.test.basic.algorithm.kakao.domain;
 
 import java.util.List;
 
