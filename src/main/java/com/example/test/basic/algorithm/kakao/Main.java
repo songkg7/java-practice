@@ -27,7 +27,7 @@ public class Main {
                     .forEach(reports -> accounts.getAccountByName(reports[0])
                             .report(accounts.getAccountByName(reports[1])));
 
-            return accounts.receiveResult(k);
+            return accounts.resultByBanLimit(k);
         }
     }
 

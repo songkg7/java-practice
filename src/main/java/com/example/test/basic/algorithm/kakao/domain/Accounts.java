@@ -20,7 +20,7 @@ public class Accounts {
                 .orElseThrow(() -> new IllegalArgumentException("account not exist."));
     }
 
-    public int[] receiveResult(int limitCount) {
+    public int[] resultByBanLimit(int limitCount) {
         return accounts.stream()
                 .mapToInt(account -> (int) account.receiveMailCount(limitCount))
                 .toArray();
