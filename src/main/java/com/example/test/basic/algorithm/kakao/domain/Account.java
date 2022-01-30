@@ -11,15 +11,16 @@ import lombok.ToString;
 public class Account {
     private final String name;
     private final Set<Account> accountReport = new HashSet<>();
-
+    private final int limitCount;
     private int reported = 0;
 
-    private Account(String name) {
+    private Account(String name, int limitCount) {
         this.name = name;
+        this.limitCount = limitCount;
     }
 
-    public static Account create(String name) {
-        return new Account(name);
+    public static Account create(String name, int limitCount) {
+        return new Account(name, limitCount);
     }
 
     public void report(Account account) {
@@ -32,13 +33,13 @@ public class Account {
         return Objects.equals(this.name, name);
     }
 
-    long receiveMailCount(int limitCount) {
+    long receiveMailCount() {
         return accountReport.stream()
-                .filter(account -> account.isBanned(limitCount))
+                .filter(Account::isBanned)
                 .count();
     }
 
-    boolean isBanned(int limitCount) {
+    boolean isBanned() {
         return reported >= limitCount;
     }
 }

@@ -17,9 +17,9 @@ public class Main {
     }
 
     static class Solution {
-        public int[] solution(String[] id_list, String[] report, int k) {
+        public int[] solution(String[] id_list, String[] report, int limitCount) {
             Accounts accounts = Accounts.of(Arrays.stream(id_list)
-                    .map(Account::create)
+                    .map(name -> Account.create(name, limitCount))
                     .collect(toList()));
 
             Arrays.stream(report)
@@ -27,7 +27,7 @@ public class Main {
                     .forEach(reports -> accounts.getAccountByName(reports[0])
                             .report(accounts.getAccountByName(reports[1])));
 
-            return accounts.resultByBanLimit(k);
+            return accounts.resultByBanLimit();
         }
     }
 
