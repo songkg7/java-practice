@@ -6,7 +6,6 @@ import java.util.Set;
 public final class Report {
     private final Set<Account> accountReport = new HashSet<>();
     private final int limitCount;
-    private int reported = 0;
 
     private Report(int limitCount) {
         this.limitCount = limitCount;
@@ -18,17 +17,17 @@ public final class Report {
 
     void report(Account account) {
         if (accountReport.add(account)) {
-            account.getReport().reported++;
+            account.reported();
         }
     }
 
     long calculateBannedAccount() {
         return accountReport.stream()
-                .filter(account -> account.getReport().isBanned())
+                .filter(Account::isBanned)
                 .count();
     }
 
-    boolean isBanned() {
-        return reported >= limitCount;
+    public int getLimitCount() {
+        return limitCount;
     }
 }

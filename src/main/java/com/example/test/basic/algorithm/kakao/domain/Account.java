@@ -11,6 +11,7 @@ import lombok.ToString;
 public final class Account {
     private final String name;
     private final Report report;
+    private int reported = 0;
 
     private Account(String name, Report report) {
         this.name = name;
@@ -31,5 +32,13 @@ public final class Account {
 
     long receiveMailCount() {
         return report.calculateBannedAccount();
+    }
+
+    void reported() {
+        reported++;
+    }
+
+    boolean isBanned() {
+        return reported >= report.getLimitCount();
     }
 }
