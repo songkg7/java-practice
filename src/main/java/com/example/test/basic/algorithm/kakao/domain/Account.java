@@ -1,32 +1,28 @@
 package com.example.test.basic.algorithm.kakao.domain;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
+@Getter
 @ToString
 @EqualsAndHashCode(of = "name")
-public class Account {
+public final class Account {
     private final String name;
-    private final Set<Account> accountReport = new HashSet<>();
-    private final int limitCount;
-    private int reported = 0;
+    private final Report report;
 
-    private Account(String name, int limitCount) {
+    private Account(String name, Report report) {
         this.name = name;
-        this.limitCount = limitCount;
+        this.report = report;
     }
 
-    public static Account create(String name, int limitCount) {
-        return new Account(name, limitCount);
+    public static Account create(String name, Report report) {
+        return new Account(name, report);
     }
 
     public void report(Account account) {
-        if (accountReport.add(account)) {
-            account.reported++;
-        }
+        report.report(account);
     }
 
     boolean isExist(String name) {
@@ -34,12 +30,6 @@ public class Account {
     }
 
     long receiveMailCount() {
-        return accountReport.stream()
-                .filter(Account::isBanned)
-                .count();
-    }
-
-    boolean isBanned() {
-        return reported >= limitCount;
+        return report.calculateBannedAccount();
     }
 }

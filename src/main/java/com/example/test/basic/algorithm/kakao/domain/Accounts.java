@@ -2,7 +2,7 @@ package com.example.test.basic.algorithm.kakao.domain;
 
 import java.util.List;
 
-public class Accounts {
+public final class Accounts {
     private final List<Account> accounts;
 
     private Accounts(List<Account> accounts) {

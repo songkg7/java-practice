@@ -4,6 +4,7 @@ import static java.util.stream.Collectors.toList;
 
 import com.example.test.basic.algorithm.kakao.domain.Account;
 import com.example.test.basic.algorithm.kakao.domain.Accounts;
+import com.example.test.basic.algorithm.kakao.domain.Report;
 import java.util.Arrays;
 
 public class Main {
@@ -19,7 +20,7 @@ public class Main {
     static class Solution {
         public int[] solution(String[] id_list, String[] report, int limitCount) {
             Accounts accounts = Accounts.of(Arrays.stream(id_list)
-                    .map(name -> Account.create(name, limitCount))
+                    .map(name -> Account.create(name, Report.of(limitCount)))
                     .collect(toList()));
 
             Arrays.stream(report)
