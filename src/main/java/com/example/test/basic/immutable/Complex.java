@@ -3,7 +3,7 @@ package com.example.test.basic.immutable;
 import lombok.Getter;
 
 @Getter
-public class Complex {
+public final class Complex {
     private final double re;
     private final double im;
 
