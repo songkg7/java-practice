@@ -1,5 +1,6 @@
 package com.example.test.basic;
 
+import com.example.test.basic.enums.Calculator;
 import org.junit.jupiter.api.Test;
 
 class CalculatorTest {

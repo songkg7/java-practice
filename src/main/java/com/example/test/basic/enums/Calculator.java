@@ -1,4 +1,4 @@
-package com.example.test.basic;
+package com.example.test.basic.enums;
 
 import java.util.Arrays;
 import java.util.function.BiFunction;
