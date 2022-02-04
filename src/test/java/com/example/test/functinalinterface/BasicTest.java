@@ -1,6 +1,8 @@
 package com.example.test.functinalinterface;
 
 import com.example.test.basic.stream.Student;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
@@ -226,5 +228,15 @@ public class BasicTest {
         BinaryOperator<Integer> binaryOperator = (n1, n2) -> n1 * n2;
         Integer result = binaryOperator.apply(2, 5);
         System.out.println("result = " + result);
+    }
+
+    @Test
+    void test_7() {
+        consumerTest(strings -> System.out.println("strings = " + strings));
+    }
+
+    void consumerTest(Consumer<List<String>> consumer) {
+        List<String> strings = Arrays.asList("snow", "onto", "flatten", "tame", "inch");
+        consumer.accept(strings);
     }
 }
