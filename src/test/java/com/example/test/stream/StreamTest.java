@@ -1,10 +1,13 @@
 package com.example.test.stream;
 
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 import com.example.test.basic.flatmap.Student;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.OptionalInt;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -202,4 +205,31 @@ public class StreamTest {
                 .forEach(s -> System.out.format("forEach: %s [%s]\n", s, Thread.currentThread().getName()));
     }
 
+    @Test
+    void bypass_filter() {
+        List<Boolean> booleans = List.of(true, false, true);
+        List<Boolean> collect = booleans.stream()
+                .filter(v -> v)
+                .collect(toList());
+        System.out.println("collect = " + collect);
+    }
+
+    @Test
+    void groupingBy_1() {
+        Student student1 = Student.from(100, 100, 100);
+        Student student2 = Student.from(90, 100, 100);
+        Student student3 = Student.from(80, 100, 100);
+
+        List<Student> students1 = List.of(student1, student2, student3);
+        List<Student> students2 = List.of(student1, student2, student3);
+        List<Student> students3 = List.of(student1, student2, student3);
+
+        List<List<Student>> lists = List.of(students1, students2, students3);
+
+        Map<Integer, List<Student>> map = lists.stream()
+                .flatMap(Collection::stream)
+                .collect(groupingBy(Student::getKor));
+
+        System.out.println("map = " + map);
+    }
 }
