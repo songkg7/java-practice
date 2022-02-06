@@ -1,5 +1,6 @@
 package com.example.test.stream;
 
+import static java.util.stream.Collectors.filtering;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
@@ -217,8 +218,8 @@ public class StreamTest {
     @Test
     void groupingBy_1() {
         Student student1 = Student.from(100, 100, 100);
-        Student student2 = Student.from(90, 100, 100);
-        Student student3 = Student.from(80, 100, 100);
+        Student student2 = Student.from(90, 76, 85);
+        Student student3 = Student.from(80, 100, 91);
 
         List<Student> students1 = List.of(student1, student2, student3);
         List<Student> students2 = List.of(student1, student2, student3);
@@ -228,7 +229,7 @@ public class StreamTest {
 
         Map<Integer, List<Student>> map = lists.stream()
                 .flatMap(Collection::stream)
-                .collect(groupingBy(Student::getKor));
+                .collect(groupingBy(Student::getKor, filtering(student -> student.getEng() < 90, toList())));
 
         System.out.println("map = " + map);
     }
