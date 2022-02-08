@@ -15,6 +15,8 @@ configurations {
 }
 
 repositories {
+    maven { url "https://maven.geotoolkit.org" }
+    maven { url "https://repo.osgeo.org/repository/release/" }
     mavenCentral()
 }
 
@@ -22,6 +24,22 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'com.opencsv', name: 'opencsv', version: '5.5.2'
+
+    implementation 'net.postgis:postgis-jdbc:2.5.1'
+    implementation 'org.hibernate:hibernate-spatial:5.6.5.Final'
+    implementation 'org.locationtech.jts:jts-modules:1.18.2'
+    implementation 'org.locationtech.jts:jts-core:1.18.2'
+    implementation 'org.locationtech.spatial4j:spatial4j:0.8'
+    implementation 'org.locationtech.geomesa:geomesa-geojson-api_2.11:3.3.0'
+
+    implementation 'org.geotools:gt-shapefile:26.2'
+    implementation 'org.geotools:gt-swing:26.2'
+    implementation 'org.geotools:gt-main:26.2'
+    implementation 'org.geotools:gt-epsg-hsql:26.2'
+    implementation group: 'org.geotools', name: 'gt-referencing', version: '26.2'
+    implementation group: 'org.geotools', name: 'gt-epsg-extension', version: '26.2'
+//    implementation 'nl.cloudfarming.client:lib-geotools:2.7.7-NB72'
+
     runtimeOnly 'com.h2database:h2'
 
     annotationProcessor("org.projectlombok:lombok")
