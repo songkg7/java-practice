@@ -6,13 +6,13 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 
 @Getter
-public class SendMoneyCommand extends SelfValidating<SendMoneyCommand>{
+public class SendMoneyCommand extends SelfValidating<SendMoneyCommand> {
 
     @NotNull
     private final AccountId sourceAccountId;
 
     @NotNull
-    private final  AccountId targetAccountId;
+    private final AccountId targetAccountId;
 
     @NotNull
     private final Money money;
