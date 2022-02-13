@@ -4,9 +4,7 @@ import com.example.test.cleanarchitecture.account.domain.Account;
 import com.example.test.cleanarchitecture.account.domain.Account.AccountId;
 import java.time.LocalDateTime;
 
-public class LoadAccountPort {
+public interface LoadAccountPort {
 
-    public Account loadAccount(AccountId accountId, LocalDateTime now) {
-        return null;
-    }
+    Account loadAccount(AccountId accountId, LocalDateTime now);
 }
