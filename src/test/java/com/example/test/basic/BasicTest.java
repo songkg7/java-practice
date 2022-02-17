@@ -12,6 +12,7 @@ import com.example.test.effectivejava.item59.OldRandom;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -236,5 +237,15 @@ class BasicTest {
         List<String> strings = new ArrayList<>(list);
         String element = strings.remove(0);
         System.out.println("strings = " + strings);
+    }
+
+    @Test
+    void unmodifiableList() {
+        List<String> list = new ArrayList<>();
+        list.add("hello");
+        List<String> unmodifiableList = Collections.unmodifiableList(list);
+
+        // unmodifiableList 에 값을 수정하려고 하면 UnsupportedOperationException 을 던진다.
+        assertThrows(UnsupportedOperationException.class, () -> unmodifiableList.add("world!"));
     }
 }
