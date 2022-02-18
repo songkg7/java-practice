@@ -1,6 +1,7 @@
 package com.example.test.basic;
 
 import static java.util.stream.Collectors.toList;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -247,5 +248,17 @@ class BasicTest {
 
         // unmodifiableList 에 값을 수정하려고 하면 UnsupportedOperationException 을 던진다.
         assertThrows(UnsupportedOperationException.class, () -> unmodifiableList.add("world!"));
+    }
+
+    @Test
+    @DisplayName("불변 리스트여도 스트림으로 객체를 수집할 수 있다.")
+    void unmodifiableListStream() {
+        List<String> list = List.of("spite", "holy", "sorrow", "wild", "student");
+        List<String> collect = list.stream()
+                .filter(s -> s.startsWith("s"))
+                .collect(toList());
+
+        System.out.println("collect = " + collect);
+        assertThat(collect).hasSize(3);
     }
 }
