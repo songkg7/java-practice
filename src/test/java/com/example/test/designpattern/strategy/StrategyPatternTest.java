@@ -1,13 +1,19 @@
 package com.example.test.designpattern.strategy;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.example.test.designpattern.strategy.car.Car;
 import com.example.test.designpattern.strategy.car.behavior.DownBehavior;
 import com.example.test.designpattern.strategy.car.behavior.LeftBehavior;
 import com.example.test.designpattern.strategy.car.behavior.RightBehavior;
 import com.example.test.designpattern.strategy.car.behavior.UpBehavior;
+import com.example.test.designpattern.strategy.shipbuildstrategy.Container;
+import com.example.test.designpattern.strategy.shipbuildstrategy.ContainerShipStrategy;
+import com.example.test.designpattern.strategy.shipbuildstrategy.Port;
+import com.example.test.designpattern.strategy.shipbuildstrategy.Ship;
 import org.junit.jupiter.api.Test;
 
-class CarTest {
+class StrategyPatternTest {
 
     @Test
     void test_1() {
@@ -24,4 +30,11 @@ class CarTest {
         // car5.move();
     }
 
+    @Test
+    void shipBuildStrategy() {
+        Port port = new Port(new ContainerShipStrategy());
+        Ship ship = port.build();
+
+        assertThat(ship).isInstanceOf(Container.class);
+    }
 }
