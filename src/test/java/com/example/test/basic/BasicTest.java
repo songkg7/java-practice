@@ -15,9 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.DisplayName;
@@ -260,5 +262,26 @@ class BasicTest {
 
         System.out.println("collect = " + collect);
         assertThat(collect).hasSize(3);
+    }
+
+    @Test
+    void set() {
+        Set<String> strings1 = new HashSet<>();
+        strings1.add("1");
+        strings1.add("2");
+        strings1.add("3");
+        strings1.add("4");
+
+        Set<String> strings2 = new HashSet<>();
+        strings2.add("3");
+        strings2.add("4");
+        strings2.add("5");
+        strings2.add("6");
+
+        Set<String> strings3 = new HashSet<>(strings1);
+
+        System.out.println(strings1.removeAll(strings2));
+        System.out.println(strings1);
+        System.out.println(strings3);
     }
 }
