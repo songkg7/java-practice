@@ -1,6 +1,7 @@
 package com.example.test.basic;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Predicate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.LinkedMultiValueMap;
@@ -283,5 +285,30 @@ class BasicTest {
         System.out.println(strings1.removeAll(strings2));
         System.out.println(strings1);
         System.out.println(strings3);
+    }
+
+    @Test
+    @DisplayName("Stream 을 사용하여 Set 의 기능을 비슷하게 흉내내기")
+    void streamSet() {
+        Set<String> strings1 = new HashSet<>();
+        strings1.add("1");
+        strings1.add("2");
+        strings1.add("3");
+        strings1.add("4");
+
+        Set<String> strings2 = new HashSet<>();
+        strings2.add("3");
+        strings2.add("4");
+        strings2.add("5");
+        strings2.add("6");
+
+        Set<String> collect = strings1.stream()
+                .filter(s -> strings2.stream().noneMatch(Predicate.isEqual(s)))
+                .collect(toSet());
+
+        System.out.println("collect: " + collect);
+        strings1.removeAll(strings2);
+
+        assertThat(collect).isEqualTo(strings1);
     }
 }
