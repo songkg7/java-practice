@@ -3,6 +3,7 @@ package com.example.test.basic;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -285,6 +286,22 @@ class BasicTest {
         System.out.println(strings1.removeAll(strings2));
         System.out.println(strings1);
         System.out.println(strings3);
+    }
+
+    @Test
+    void set_2() {
+        Set<String> prev = new HashSet<>();
+
+        Set<String> cur = new HashSet<>();
+        cur.add("3");
+        cur.add("4");
+        cur.add("5");
+        cur.add("6");
+
+        // emptySet 을 지우려고 하면 false 를 return
+        assertFalse(prev.removeAll(cur));
+        assertThat(prev).isEmpty();
+        assertThat(cur).isNotEmpty();
     }
 
     @Test
