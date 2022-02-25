@@ -4,7 +4,7 @@
 
 ### Book
 
-- Clean architecture
+- Clean Architecture
 - Clean Code
 - Effective java
 - Objects (조영호 저)
@@ -22,8 +22,13 @@
 - Proxy
 - Singleton
 - Strategy
+- Adapter
 
 ### Java
 - Immutable object
 - First collection
 - Stream
+
+### Redis
+- redisTemplate & redisRepository
+- @Indexed
