@@ -2,6 +2,7 @@ package com.example.test.time;
 
 import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 import static java.time.temporal.TemporalAdjusters.nextOrSame;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -22,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
 
@@ -213,4 +215,13 @@ public class TimeTest {
 
     }
 
+    @Test
+    @DisplayName("같은 시간의 isAfter 비교는 True")
+    void isAfter() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now2 = LocalDateTime.now();
+
+        boolean actual = now.isAfter(now2);
+        assertThat(actual).isFalse();
+    }
 }
