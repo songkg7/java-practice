@@ -224,4 +224,13 @@ public class TimeTest {
         boolean actual = now.isAfter(now2);
         assertThat(actual).isFalse();
     }
+
+    @Test
+    void timeFormat() {
+        String buildTime = "2022-03-01T00:00:00";
+        LocalDateTime parseTime = LocalDateTime.parse(buildTime);
+        LocalDateTime localDateTime = LocalDateTime.of(2022, 3, 1, 0, 0);
+
+        assertThat(localDateTime).isEqualTo(parseTime);
+    }
 }
