@@ -1,0 +1,1 @@
+# Getter, Setter 가 캡슐화를 할 수 없는 이유
