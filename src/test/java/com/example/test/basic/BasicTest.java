@@ -328,4 +328,14 @@ class BasicTest {
 
         assertThat(collect).isEqualTo(strings1);
     }
+
+    @Test
+    void removePrefix() {
+        String s = "ClassA/test";
+        String s1 = s.replaceFirst("ClassA/", "");
+        String s2 = s.substring(0, 6);
+
+        System.out.println("s1: " + s1);
+        System.out.println("s2: " + s2);
+    }
 }
