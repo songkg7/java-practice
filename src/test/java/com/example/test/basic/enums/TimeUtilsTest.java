@@ -29,4 +29,16 @@ class TimeUtilsTest {
         System.out.println("format1: " + format1);
         System.out.println("format2: " + format2);
     }
+
+    @Test
+    void lambdaFormat() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDate localDate = LocalDate.now();
+
+        String format1 = TimeUtils.LOCAL_DATE.formatByLambda(localDate);
+        String format2 = TimeUtils.LOCAL_DATE_TIME.formatByLambda(localDateTime);
+
+        System.out.println("format1: " + format1);
+        System.out.println("format2: " + format2);
+    }
 }
