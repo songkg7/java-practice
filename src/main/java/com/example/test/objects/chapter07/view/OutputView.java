@@ -13,4 +13,8 @@ public class OutputView {
     public void requestTaxRate() {
         printStream.println("세율을 입력하세요.");
     }
+
+    public void describeResult(String name, double pay) {
+        printStream.println("이름: " + name + ", 급여: " + pay);
+    }
 }

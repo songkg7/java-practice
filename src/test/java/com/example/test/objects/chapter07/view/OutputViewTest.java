@@ -27,4 +27,12 @@ class OutputViewTest {
 
         assertThat(outputStream.toString()).contains("세율을 입력하세요.");
     }
+
+    @Test
+    @DisplayName("이름이 test, 급여가 100 인 경우 '이름: test, 급여: 100' 이라는 메세지가 출력된다.")
+    void describeResult() {
+        outputView.describeResult("test", 100);
+
+        assertThat(outputStream.toString()).contains("이름: test, 급여: 100");
+    }
 }
