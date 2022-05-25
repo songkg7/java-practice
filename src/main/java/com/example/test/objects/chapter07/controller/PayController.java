@@ -1,8 +1,8 @@
 package com.example.test.objects.chapter07.controller;
 
-import com.example.test.objects.chapter07.model.ContractWorker;
 import com.example.test.objects.chapter07.model.Employee;
-import com.example.test.objects.chapter07.model.TemporaryWorker;
+import com.example.test.objects.chapter07.model.HourlyEmployee;
+import com.example.test.objects.chapter07.model.SalariedEmployee;
 import com.example.test.objects.chapter07.view.InputView;
 import com.example.test.objects.chapter07.view.OutputView;
 import lombok.RequiredArgsConstructor;
@@ -18,16 +18,15 @@ public class PayController {
         double taxRate = getTaxRate();
 
         // 직원의 급여를 계산한다.
-        Employee contractWorker = ContractWorker.of("직원A", 400);
-        double contractPay = contractWorker.calculatePay(taxRate);
+        Employee salariedEmployee = SalariedEmployee.of("직원A", 400);
+        double salary = salariedEmployee.calculatePay(taxRate);
 
-        TemporaryWorker temporaryWorker = TemporaryWorker.of("계약직 직원B", 1);
-        temporaryWorker.working(160);
-        double temporaryPay = temporaryWorker.calculatePay(taxRate);
+        HourlyEmployee hourlyEmployee = HourlyEmployee.of("계약직 직원B", 1, 160);
+        double temporaryPay = hourlyEmployee.calculatePay(taxRate);
 
         // 양식에 맞게 결과를 출력한다.
-        outputView.describeResult(contractWorker.getName(), contractPay);
-        outputView.describeResult(temporaryWorker.getName(), temporaryPay);
+        outputView.describeResult(salariedEmployee.getName(), salary);
+        outputView.describeResult(hourlyEmployee.getName(), temporaryPay);
     }
 
     private double getTaxRate() {
