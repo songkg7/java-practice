@@ -1,18 +1,17 @@
 package com.example.test.objects.chapter07.model;
 
-import lombok.Value;
+import lombok.Getter;
 
-@Value
-public class Employee {
+@Getter
+public abstract class Employee {
 
-    String name;
-    int pay;
+    protected String name;
+    protected int pay;
 
-    public static Employee of(String name, int pay) {
-        return new Employee(name, pay);
+    public Employee(String name, int pay) {
+        this.name = name;
+        this.pay = pay;
     }
 
-    public double calculatePay(double taxRate) {
-        return pay - (pay * taxRate);
-    }
+    public abstract double calculatePay(double taxRate);
 }
