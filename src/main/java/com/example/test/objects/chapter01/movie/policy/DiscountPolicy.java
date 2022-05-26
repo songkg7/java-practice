@@ -3,7 +3,6 @@ package com.example.test.objects.chapter01.movie.policy;
 import com.example.test.objects.chapter01.movie.condition.DiscountCondition;
 import com.example.test.objects.chapter01.movie.domain.Money;
 import com.example.test.objects.chapter01.movie.domain.Screening;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lombok.ToString;
@@ -11,7 +10,7 @@ import lombok.ToString;
 @ToString
 public abstract class DiscountPolicy {
 
-    private List<DiscountCondition> conditions = new ArrayList<>();
+    private final List<DiscountCondition> conditions;
 
     public DiscountPolicy(DiscountCondition... conditions) {
         this.conditions = Arrays.asList(conditions);
