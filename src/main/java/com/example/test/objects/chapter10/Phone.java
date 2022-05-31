@@ -2,17 +2,12 @@ package com.example.test.objects.chapter10;
 
 import com.example.test.objects.chapter01.movie.domain.Money;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Phone {
-    private Money amount;
-    private Duration seconds;
-    private List<Call> calls = new ArrayList<>();
+public class Phone extends AbstractPhone {
 
-    public Phone(Money amount, Duration seconds) {
-        this.amount = amount;
-        this.seconds = seconds;
+    public Phone(Money amount, Duration seconds, List<Call> calls) {
+        super(amount, seconds, calls);
     }
 
     public void call(Call call) {
@@ -31,13 +26,4 @@ public class Phone {
         return seconds;
     }
 
-    public Money calculateFee() {
-        Money result = Money.ZERO;
-
-        for (Call call : calls) {
-            result = result.plus(amount.times(call.getDuration().getSeconds() / seconds.getSeconds()));
-        }
-
-        return result;
-    }
 }

@@ -2,23 +2,19 @@ package com.example.test.objects.chapter10;
 
 import com.example.test.objects.chapter01.movie.domain.Money;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
-public class NightlyDiscountPhone {
+public class NightlyDiscountPhone extends AbstractPhone {
     private static final int LATE_NIGHT_HOUR = 22;
 
     private Money nightlyAmount;
-    private Money regularAmount;
-    private Duration seconds;
-    private List<Call> calls = new ArrayList<>();
 
-    public NightlyDiscountPhone(Money nightlyAmount, Money regularAmount, Duration seconds) {
+    public NightlyDiscountPhone(Money amount, Duration seconds, List<Call> calls, Money nightlyAmount) {
+        super(amount, seconds, calls);
         this.nightlyAmount = nightlyAmount;
-        this.regularAmount = regularAmount;
-        this.seconds = seconds;
     }
 
+    @Override
     public Money calculateFee() {
         Money result = Money.ZERO;
 
@@ -28,7 +24,7 @@ public class NightlyDiscountPhone {
                         nightlyAmount.times(call.getDuration().getSeconds() / seconds.getSeconds()));
             } else {
                 result = result.plus(
-                        regularAmount.times(call.getDuration().getSeconds() / seconds.getSeconds()));
+                        amount.times(call.getDuration().getSeconds() / seconds.getSeconds()));
             }
         }
 
