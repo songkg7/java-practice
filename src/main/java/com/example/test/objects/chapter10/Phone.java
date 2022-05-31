@@ -3,12 +3,15 @@ package com.example.test.objects.chapter10;
 import com.example.test.objects.chapter01.movie.domain.Money;
 import java.time.Duration;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 
-public class Phone extends AbstractPhone {
+@RequiredArgsConstructor
+public class Phone {
+    private final Money amount;
+    private final Duration seconds;
+    private final List<Call> calls;
 
-    public Phone(Money amount, Duration seconds, List<Call> calls) {
-        super(amount, seconds, calls);
-    }
+    private final RatePolicy ratePolicy;
 
     public void call(Call call) {
         calls.add(call);
@@ -26,4 +29,7 @@ public class Phone extends AbstractPhone {
         return seconds;
     }
 
+    public Money calculateFee() {
+        return ratePolicy.calculateFee(this);
+    }
 }
