@@ -2,18 +2,16 @@ package com.example.test.objects.chapter10;
 
 import com.example.test.objects.chapter01.movie.domain.Money;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class Phone {
-    private Money amount;
-    private Duration seconds;
-    private List<Call> calls = new ArrayList<>();
+    private final Money amount;
+    private final Duration seconds;
+    private final List<Call> calls;
 
-    public Phone(Money amount, Duration seconds) {
-        this.amount = amount;
-        this.seconds = seconds;
-    }
+    private final RatePolicy ratePolicy;
 
     public void call(Call call) {
         calls.add(call);
@@ -32,12 +30,6 @@ public class Phone {
     }
 
     public Money calculateFee() {
-        Money result = Money.ZERO;
-
-        for (Call call : calls) {
-            result = result.plus(amount.times(call.getDuration().getSeconds() / seconds.getSeconds()));
-        }
-
-        return result;
+        return ratePolicy.calculateFee(this);
     }
 }
