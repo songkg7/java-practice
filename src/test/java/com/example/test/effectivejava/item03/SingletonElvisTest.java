@@ -1,6 +1,7 @@
 package com.example.test.effectivejava.item03;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import java.io.ByteArrayInputStream;
@@ -79,5 +80,19 @@ class SingletonElvisTest {
         );
 
         return Stream.concat(serializeTest, deserializeTest);
+    }
+
+    @Test
+    @DisplayName("Singleton 생성의 가장 이상적인 방법인 Enum 사용법, reflection 공격도 막을 수 있다.")
+    void elvisThree() {
+        ElvisThree instance = ElvisThree.INSTANCE;
+
+        // Enum 은 생성자가 없으므로 reflection 방법을 사용할 수 없다.
+        assertThatThrownBy(ElvisThree.class::getDeclaredConstructor)
+                .isInstanceOf(NoSuchMethodException.class);
+
+        ElvisThree anotherInstance = ElvisThree.INSTANCE;
+
+        assertThat(instance).isEqualTo(anotherInstance);
     }
 }
