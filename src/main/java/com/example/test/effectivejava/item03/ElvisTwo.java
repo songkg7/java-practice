@@ -1,6 +1,8 @@
 package com.example.test.effectivejava.item03;
 
-public class ElvisTwo {
+import java.io.Serializable;
+
+public class ElvisTwo implements Serializable {
 
     private static final ElvisTwo INSTANCE = new ElvisTwo();
 
