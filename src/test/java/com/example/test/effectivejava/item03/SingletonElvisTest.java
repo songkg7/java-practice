@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Constructor;
@@ -92,6 +93,26 @@ class SingletonElvisTest {
                 .isInstanceOf(NoSuchMethodException.class);
 
         ElvisThree anotherInstance = ElvisThree.INSTANCE;
+
+        assertThat(instance).isEqualTo(anotherInstance);
+    }
+
+    @Test
+    @DisplayName("Enum 은 직렬화와 관계없이 항상 같은 인스턴스임이 보장된다.")
+    void enumSerialize() throws IOException, ClassNotFoundException {
+        ElvisThree instance = ElvisThree.INSTANCE;
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+        objectOutputStream.writeObject(instance);
+
+        byte[] serializedInstance = byteArrayOutputStream.toByteArray();
+
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(serializedInstance);
+        ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+
+        Object object = objectInputStream.readObject();
+        ElvisThree anotherInstance = (ElvisThree) object;
 
         assertThat(instance).isEqualTo(anotherInstance);
     }
