@@ -18,4 +18,9 @@ public class ElvisTwo implements Serializable {
     public void something() {
 
     }
+
+    // readResolve 를 구현하면 역직렬화할 때 같은 인스턴스를 반환하도록 하여 싱글톤을 유지할 수 있다.
+//    private Object readResolve() {
+//        return INSTANCE;
+//    }
 }
