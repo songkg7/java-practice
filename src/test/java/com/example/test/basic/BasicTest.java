@@ -338,4 +338,14 @@ class BasicTest {
         System.out.println("s1: " + s1);
         System.out.println("s2: " + s2);
     }
+
+    @Test
+    void endWith() {
+        String path = "ais-input/202205";
+
+        int targetLength = 6;
+        String substring = path.substring(path.length() - targetLength);
+
+        System.out.println("substring: " + substring);
+    }
 }
