@@ -1,4 +1,4 @@
-# Java Study
+# Java practice
 
 > 이 Repository 는 언어 레벨 테스트 및 공부 기록을 위해 사용합니다.
 
