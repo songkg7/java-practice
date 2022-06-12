@@ -35,4 +35,13 @@ public class Lecture {
     private long failCount() {
         return scores.size() - passCount();
     }
+
+    // 현재 클래스의 메서드를 호출하는 것이 아니라 현재 객체(self)에게 메시지를 전송하는 것이다. (417p)
+    public String stats() {
+        return String.format("Title: %s, Evaluation Method: %s", title, getEvaluationMethod());
+    }
+
+    public String getEvaluationMethod() {
+        return "Pass or Fail";
+    }
 }
