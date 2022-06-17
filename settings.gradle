@@ -1,3 +1,5 @@
 rootProject.name = 'java-practice'
 
 include 'objects-book'
+include 'basic-syntax'
+
