@@ -1,6 +1,6 @@
 package basicsyntax.stream.trade;
 
-import basicsyntax.nullcheck.Money;
+import basicsyntax.stream.Money;
 import java.time.Year;
 import lombok.Value;
 

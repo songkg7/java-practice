@@ -3,4 +3,5 @@ rootProject.name = 'java-practice'
 include 'objects-book'
 include 'basic-syntax'
 include 'effective-java'
+include 'clean-architecture'
 
