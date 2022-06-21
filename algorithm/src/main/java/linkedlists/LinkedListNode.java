@@ -1,10 +1,10 @@
 package linkedlists;
 
-public class ListNode {
+public class LinkedListNode {
     private int data;
-    private ListNode next;
+    private LinkedListNode next;
 
-    public ListNode(int data) {
+    public LinkedListNode(int data) {
         this.data = data;
     }
 
@@ -16,17 +16,17 @@ public class ListNode {
         this.data = data;
     }
 
-    public ListNode getNext() {
+    public LinkedListNode getNext() {
         return next;
     }
 
-    public void setNext(ListNode next) {
+    public void setNext(LinkedListNode next) {
         this.next = next;
     }
 
-    int listLength(ListNode headNode) {
+    int listLength(LinkedListNode headNode) {
         int length = 0;
-        ListNode currentNode = headNode;
+        LinkedListNode currentNode = headNode;
         while (currentNode != null) {
             length++;
             currentNode = currentNode.getNext();
@@ -34,7 +34,7 @@ public class ListNode {
         return length;
     }
 
-    ListNode insert(ListNode headNode, ListNode nodeToInsert, int position) {
+    LinkedListNode insert(LinkedListNode headNode, LinkedListNode nodeToInsert, int position) {
         if (headNode == null) {
             return nodeToInsert;
         }
@@ -49,13 +49,13 @@ public class ListNode {
             return nodeToInsert;
         }
 
-        ListNode prevNode = headNode;
+        LinkedListNode prevNode = headNode;
         int count = 1;
         while (count < position - 1) {
             prevNode = prevNode.getNext();
             count++;
         }
-        ListNode curNode = prevNode.getNext();
+        LinkedListNode curNode = prevNode.getNext();
         nodeToInsert.setNext(curNode); // 새 노드의 다음 포인터가 현재 노드를 가리키도록 업데이트
         prevNode.setNext(nodeToInsert); // 이전 노드가 새 노드를 가리키도록 업데이트
         return headNode;
@@ -67,7 +67,7 @@ public class ListNode {
      * @param position 삭제할 위치
      * @return headNode
      */
-    ListNode delete(ListNode headNode, int position) {
+    LinkedListNode delete(LinkedListNode headNode, int position) {
         int size = listLength(headNode);
 
         if (position > size + 1 || position < 1) {
@@ -75,18 +75,18 @@ public class ListNode {
         }
 
         if (position == 1) {
-            ListNode nextNode = headNode.getNext();
+            LinkedListNode nextNode = headNode.getNext();
             headNode.setNext(null);
             return nextNode;
         }
 
-        ListNode prevNode = headNode;
+        LinkedListNode prevNode = headNode;
         int count = 1;
         while (count < position - 1) {
             prevNode = prevNode.getNext();
             count++;
         }
-        ListNode curNode = prevNode.getNext();
+        LinkedListNode curNode = prevNode.getNext();
         prevNode.setNext(curNode.getNext());
         return headNode;
     }

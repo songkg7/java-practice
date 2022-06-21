@@ -6,15 +6,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class DoublyListNodeTest {
+class DoublyLinkedListNodeTest {
 
-    private DoublyListNode headNode;
+    private DoublyLinkedListNode headNode;
 
     @BeforeEach
     void setUp() {
-        headNode = new DoublyListNode(0);
-        DoublyListNode dNode1 = new DoublyListNode(1);
-        DoublyListNode dNode2 = new DoublyListNode(2);
+        headNode = new DoublyLinkedListNode(0);
+        DoublyLinkedListNode dNode1 = new DoublyLinkedListNode(1);
+        DoublyLinkedListNode dNode2 = new DoublyLinkedListNode(2);
         headNode.setNext(dNode1);
         dNode1.setNext(dNode2);
         dNode1.setPrev(headNode);
@@ -24,7 +24,7 @@ class DoublyListNodeTest {
     @Test
     @DisplayName("이중 연결 리스트의 첫번째 위치 삽입")
     void insert_first() {
-        DoublyListNode dNode3 = new DoublyListNode(3);
+        DoublyLinkedListNode dNode3 = new DoublyLinkedListNode(3);
         headNode.insert(headNode, dNode3, 1);
 
         int next = dNode3.getNext().getData();
@@ -35,7 +35,7 @@ class DoublyListNodeTest {
     @Test
     @DisplayName("이중 연결 리스트의 삽입")
     void insert() {
-        DoublyListNode dNode3 = new DoublyListNode(3);
+        DoublyLinkedListNode dNode3 = new DoublyLinkedListNode(3);
         headNode.insert(headNode, dNode3, 3);
 
         int prev = dNode3.getPrev().getData();
@@ -48,11 +48,11 @@ class DoublyListNodeTest {
     @Test
     @DisplayName("이중 연결 리스트의 마지막 위치 삽입")
     void insert_last() {
-        DoublyListNode dNode3 = new DoublyListNode(3);
+        DoublyLinkedListNode dNode3 = new DoublyLinkedListNode(3);
         headNode.insert(headNode, dNode3, 4);
 
         int prev = dNode3.getPrev().getData();
-        DoublyListNode next = dNode3.getNext();
+        DoublyLinkedListNode next = dNode3.getNext();
 
         assertThat(prev).isEqualTo(2);
         assertThat(next).isNull();
@@ -61,7 +61,7 @@ class DoublyListNodeTest {
     @Test
     @DisplayName("이중 연결 리스트의 첫번째 위치 삭제")
     void delete_first() {
-        DoublyListNode updatedHead = headNode.delete(headNode, 1);
+        DoublyLinkedListNode updatedHead = headNode.delete(headNode, 1);
         int data = updatedHead.getData();
 
         assertThat(data).isEqualTo(1);
@@ -80,7 +80,7 @@ class DoublyListNodeTest {
     @DisplayName("이중 연결 리스트의 마지막 위치 삭제")
     void delete_last() {
         headNode.delete(headNode, 3);
-        DoublyListNode next = headNode.getNext().getNext();
+        DoublyLinkedListNode next = headNode.getNext().getNext();
 
         assertThat(next).isNull();
     }

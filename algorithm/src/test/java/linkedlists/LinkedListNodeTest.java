@@ -6,15 +6,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ListNodeTest {
+class LinkedListNodeTest {
 
-    private ListNode headNode;
+    private LinkedListNode headNode;
 
     @BeforeEach
     void setUp() {
-        headNode = new ListNode(0);
-        ListNode listNode1 = new ListNode(1);
-        ListNode listNode2 = new ListNode(2);
+        headNode = new LinkedListNode(0);
+        LinkedListNode listNode1 = new LinkedListNode(1);
+        LinkedListNode listNode2 = new LinkedListNode(2);
         headNode.setNext(listNode1);
         listNode1.setNext(listNode2);
     }
@@ -29,9 +29,9 @@ class ListNodeTest {
     @Test
     @DisplayName("연결 리스트에 노드 삽입하기")
     void insert() {
-        ListNode listNode3 = new ListNode(3);
+        LinkedListNode listNode3 = new LinkedListNode(3);
 
-        ListNode node = headNode.insert(headNode, listNode3, 2);
+        LinkedListNode node = headNode.insert(headNode, listNode3, 2);
         int data = node.getNext().getData();
         assertThat(data).isEqualTo(3);
     }

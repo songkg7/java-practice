@@ -1,12 +1,12 @@
 package linkedlists;
 
-public class DoublyListNode {
+public class DoublyLinkedListNode {
 
     private int data;
-    private DoublyListNode next;
-    private DoublyListNode prev;
+    private DoublyLinkedListNode next;
+    private DoublyLinkedListNode prev;
 
-    public DoublyListNode(int data) {
+    public DoublyLinkedListNode(int data) {
         this.data = data;
     }
 
@@ -18,19 +18,19 @@ public class DoublyListNode {
         this.data = data;
     }
 
-    public DoublyListNode getNext() {
+    public DoublyLinkedListNode getNext() {
         return next;
     }
 
-    public void setNext(DoublyListNode next) {
+    public void setNext(DoublyLinkedListNode next) {
         this.next = next;
     }
 
-    public DoublyListNode getPrev() {
+    public DoublyLinkedListNode getPrev() {
         return prev;
     }
 
-    public void setPrev(DoublyListNode prev) {
+    public void setPrev(DoublyLinkedListNode prev) {
         this.prev = prev;
     }
 
@@ -41,7 +41,7 @@ public class DoublyListNode {
      * @param position
      * @return headNode
      */
-    public DoublyListNode insert(DoublyListNode headNode, DoublyListNode nodeToInsert, int position) {
+    public DoublyLinkedListNode insert(DoublyLinkedListNode headNode, DoublyLinkedListNode nodeToInsert, int position) {
         if (position == 1) {
             nodeToInsert.setNext(headNode);
             nodeToInsert.setPrev(null);
@@ -49,13 +49,13 @@ public class DoublyListNode {
             return nodeToInsert;
         }
 
-        DoublyListNode prevNode = headNode;
+        DoublyLinkedListNode prevNode = headNode;
         int count = 1;
         while (count < position - 1) {
             prevNode = prevNode.getNext();
             count++;
         }
-        DoublyListNode nextNode = prevNode.getNext();
+        DoublyLinkedListNode nextNode = prevNode.getNext();
         nodeToInsert.setNext(nextNode);
         if (nextNode != null) {
             nextNode.setPrev(nodeToInsert);
@@ -65,21 +65,21 @@ public class DoublyListNode {
         return headNode;
     }
 
-    public DoublyListNode delete(DoublyListNode headNode, int position) {
+    public DoublyLinkedListNode delete(DoublyLinkedListNode headNode, int position) {
         if (position == 1) {
-            DoublyListNode nextNode = headNode.getNext();
+            DoublyLinkedListNode nextNode = headNode.getNext();
             nextNode.setPrev(null);
             headNode.setNext(null);
             return nextNode;
         }
 
-        DoublyListNode prevNode = headNode;
+        DoublyLinkedListNode prevNode = headNode;
         int count = 1;
         while (count < position - 1) {
             prevNode = prevNode.getNext();
             count++;
         }
-        DoublyListNode targetNode = prevNode.getNext();
+        DoublyLinkedListNode targetNode = prevNode.getNext();
         prevNode.setNext(targetNode.getNext());
         targetNode.setPrev(null);
         if (targetNode.getNext() != null) {
