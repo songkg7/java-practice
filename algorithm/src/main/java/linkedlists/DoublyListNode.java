@@ -64,4 +64,28 @@ public class DoublyListNode {
         nodeToInsert.setPrev(prevNode);
         return headNode;
     }
+
+    public DoublyListNode delete(DoublyListNode headNode, int position) {
+        if (position == 1) {
+            DoublyListNode nextNode = headNode.getNext();
+            nextNode.setPrev(null);
+            headNode.setNext(null);
+            return nextNode;
+        }
+
+        DoublyListNode prevNode = headNode;
+        int count = 1;
+        while (count < position - 1) {
+            prevNode = prevNode.getNext();
+            count++;
+        }
+        DoublyListNode targetNode = prevNode.getNext();
+        prevNode.setNext(targetNode.getNext());
+        targetNode.setPrev(null);
+        if (targetNode.getNext() != null) {
+            targetNode.getNext().setPrev(prevNode);
+        }
+        targetNode.setNext(null);
+        return headNode;
+    }
 }

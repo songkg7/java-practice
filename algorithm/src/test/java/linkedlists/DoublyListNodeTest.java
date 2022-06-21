@@ -57,4 +57,31 @@ class DoublyListNodeTest {
         assertThat(prev).isEqualTo(2);
         assertThat(next).isNull();
     }
+
+    @Test
+    @DisplayName("이중 연결 리스트의 첫번째 위치 삭제")
+    void delete_first() {
+        DoublyListNode updatedHead = headNode.delete(headNode, 1);
+        int data = updatedHead.getData();
+
+        assertThat(data).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("이중 연결 리스트의 삭제")
+    void delete() {
+        headNode.delete(headNode, 2);
+        int data = headNode.getNext().getData();
+
+        assertThat(data).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("이중 연결 리스트의 마지막 위치 삭제")
+    void delete_last() {
+        headNode.delete(headNode, 3);
+        DoublyListNode next = headNode.getNext().getNext();
+
+        assertThat(next).isNull();
+    }
 }
