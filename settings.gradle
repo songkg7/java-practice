@@ -5,4 +5,5 @@ include 'basic-syntax'
 include 'effective-java'
 include 'clean-architecture'
 include 'algorithm'
+include 'design-pattern'
 
