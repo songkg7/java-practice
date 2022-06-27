@@ -45,4 +45,32 @@ public class CircularLinkedListNode {
         }
         return length;
     }
+
+    public void printCircularListData(CircularLinkedListNode headNode) {
+        CircularLinkedListNode curNode = headNode;
+        while (curNode != null) {
+            System.out.println(curNode.getData() + "->");
+            curNode = curNode.getNext();
+            if (curNode == headNode) {
+                break;
+            }
+        }
+        System.out.println("(" + curNode.getData() + ")headNode");
+    }
+
+    public CircularLinkedListNode insert(CircularLinkedListNode headNode, CircularLinkedListNode nodeToInsert,
+            int position) {
+        if (headNode == null) {
+            return nodeToInsert;
+        }
+
+        // 가장 끝에 노드 삽입하기
+        CircularLinkedListNode curNode = headNode;
+        while (curNode.getNext() != headNode) {
+            curNode = curNode.getNext();
+        }
+        nodeToInsert.setNext(headNode);
+        curNode.setNext(nodeToInsert);
+        return headNode;
+    }
 }
