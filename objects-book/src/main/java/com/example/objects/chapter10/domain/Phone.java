@@ -1,6 +1,7 @@
-package com.example.objects.chapter10;
+package com.example.objects.chapter10.domain;
 
 import com.example.objects.chapter01.movie.domain.Money;
+import com.example.objects.chapter10.RatePolicy;
 import java.time.Duration;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

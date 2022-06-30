@@ -1,14 +1,15 @@
 package com.example.objects.chapter10;
 
 import com.example.objects.chapter01.movie.domain.Money;
+import com.example.objects.chapter10.domain.Call;
 import java.time.Duration;
 
-public class RegularPolicy extends BasicRatePolicy {
+public class FixedFeePolicy extends BasicRatePolicy {
 
     private Money amount;
     private Duration seconds;
 
-    public RegularPolicy(Money amount, Duration seconds) {
+    public FixedFeePolicy(Money amount, Duration seconds) {
         this.amount = amount;
         this.seconds = seconds;
     }
