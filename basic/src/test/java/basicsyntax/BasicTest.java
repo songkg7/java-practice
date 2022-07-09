@@ -276,4 +276,15 @@ class BasicTest {
 
         System.out.println("substring: " + substring);
     }
+
+    @Test
+    void map() {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "Cmmpa");
+        map.put(1, "demand");
+
+        // map 은 id 가 같지만 값이 다를 경우, overwrite 된다.
+        assertThat(map).hasSize(1);
+        assertThat(map.get(1)).isEqualTo("demand");
+    }
 }
