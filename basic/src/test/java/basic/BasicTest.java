@@ -287,4 +287,12 @@ class BasicTest {
         assertThat(map).hasSize(1);
         assertThat(map.get(1)).isEqualTo("demand");
     }
+
+    @Test
+    @DisplayName("list 순회하면서 element 체크하기")
+    void assertList() {
+        List<String> strings = List.of("pot", "mechanic", "educator", "lesson", "human");
+
+        assertThat(strings).filteredOn(s -> s.startsWith("e")).containsExactly("educator");
+    }
 }
