@@ -94,6 +94,9 @@ class BasicTest {
 
         System.out.println("second = " + second);
 
+        // 같은 메모리 주소를 공유하기 때문에 따로따로 처리할 수 없다.
+        assertThat(first).isSameAs(second);
+        assertThat(first).isEqualTo(second);
     }
 
     @Test
