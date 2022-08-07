@@ -18,4 +18,8 @@ public class Money {
     private static boolean isPositive(long amount) {
         return amount > 0;
     }
+
+    private static boolean isNegative(long amount) {
+        return amount < 0;
+    }
 }
