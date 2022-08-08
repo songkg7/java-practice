@@ -6,4 +6,5 @@ include 'effective-java'
 include 'clean-architecture'
 include 'algorithm'
 include 'design-pattern'
+include 'spring-data-jpa'
 
