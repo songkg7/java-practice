@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
@@ -297,5 +298,16 @@ class BasicTest {
         List<String> strings = List.of("pot", "mechanic", "educator", "lesson", "human");
 
         assertThat(strings).filteredOn(s -> s.startsWith("e")).containsExactly("educator");
+    }
+
+    @Test
+    void optional() {
+        Optional<String> optional = Optional.ofNullable(null);
+
+        String result = optional
+                .map(String::toUpperCase)
+                .orElse("b");
+
+        assertThat(result).isEqualTo("A");
     }
 }
