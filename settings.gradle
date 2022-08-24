@@ -7,5 +7,5 @@ include 'clean-architecture'
 include 'algorithm'
 include 'design-pattern'
 include 'spring-data-jpa'
-include 'spring-mvc'
+include 'spring-batch'
 
