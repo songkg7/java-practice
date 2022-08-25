@@ -1,12 +1,12 @@
 package com.example.springmvc.controller;
 
+import com.example.springmvc.converter.AlphaConverter;
+import com.example.springmvc.converter.BetaConverter;
+import com.example.springmvc.converter.OmegaConverter;
 import com.example.springmvc.model.input.AlphaRecord;
 import com.example.springmvc.model.input.BetaRecord;
 import com.example.springmvc.model.input.OmegaRecord;
 import com.example.springmvc.model.output.UnitedRecord;
-import com.example.springmvc.policy.AlphaConverter;
-import com.example.springmvc.policy.BetaConverter;
-import com.example.springmvc.policy.OmegaConverter;
 import com.example.springmvc.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
