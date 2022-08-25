@@ -23,7 +23,7 @@ public class CompanyController {
         return "home";
     }
 
-    // @RequestParam
+    // @ModelAttribute
     @PostMapping("/a")
     public Mono<ARecord> sampleRecord(ARecord model) {
         log.info("model: {}", model);
