@@ -4,7 +4,9 @@ import com.example.springmvc.model.input.AlphaRecord;
 import com.example.springmvc.model.input.BetaRecord;
 import com.example.springmvc.model.input.OmegaRecord;
 import com.example.springmvc.model.output.UnitedRecord;
-import com.example.springmvc.policy.OmegaPolicy;
+import com.example.springmvc.policy.AlphaConverter;
+import com.example.springmvc.policy.BetaConverter;
+import com.example.springmvc.policy.OmegaConverter;
 import com.example.springmvc.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,24 +29,22 @@ public class CompanyController {
     }
 
     // @ModelAttribute
-    @PostMapping("/a")
-    public Mono<AlphaRecord> sampleRecord(AlphaRecord model) {
+    @PostMapping("/alpha")
+    public Mono<UnitedRecord> sampleRecord(AlphaRecord model) {
         log.info("model: {}", model);
-        return companyService.getARecordMono(model);
+        return companyService.getRecordMono(new AlphaConverter(model));
     }
 
     // @RequestBody
-    @PostMapping("/b")
-    public Mono<BetaRecord> sampleRecord(@RequestBody BetaRecord model) {
+    @PostMapping("/beta")
+    public Mono<UnitedRecord> sampleRecord(@RequestBody BetaRecord model) {
         log.info("model: {}", model);
-        return companyService.getBRecordMono(model);
+        return companyService.getRecordMono(new BetaConverter(model));
     }
 
-    @PostMapping("/c")
+    @PostMapping("/omega")
     public Mono<UnitedRecord> getRecord(@RequestBody OmegaRecord model) {
         log.info("model: {}", model);
-        OmegaPolicy omegaPolicy = new OmegaPolicy();
-        UnitedRecord record = omegaPolicy.convert(model);
-        return companyService.getRecordMono(record);
+        return companyService.getRecordMono(new OmegaConverter(model));
     }
 }

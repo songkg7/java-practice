@@ -3,8 +3,8 @@ package com.example.springmvc.policy;
 import com.example.springmvc.model.output.UnitedRecord;
 
 @FunctionalInterface
-public interface ConvertPolicy<T> {
+public interface RecordConverter {
 
-    UnitedRecord convert(T model);
+    UnitedRecord convert();
 
 }
