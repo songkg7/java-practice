@@ -16,7 +16,15 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     public static LottoNumber of(int number) {
+        validateNumber(number);
         return new LottoNumber(number);
+    }
+
+    private static void validateNumber(int number) {
+        if (number >= 1 && number <= 45) {
+            return;
+        }
+        throw new IllegalArgumentException("로또 번호는 1~45 사이의 숫자만 가능합니다.");
     }
 
     @Override
