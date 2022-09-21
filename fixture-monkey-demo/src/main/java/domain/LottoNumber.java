@@ -1,14 +1,16 @@
 package domain;
 
+import static lombok.AccessLevel.PRIVATE;
+
 import lombok.Builder;
 import lombok.ToString;
 
 @ToString
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
 
     private final int number;
 
-    @Builder(access = lombok.AccessLevel.PRIVATE)
+    @Builder(access = PRIVATE)
     private LottoNumber(int number) {
         this.number = number;
     }
@@ -17,4 +19,8 @@ public class LottoNumber {
         return new LottoNumber(number);
     }
 
+    @Override
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(number, o.number);
+    }
 }
