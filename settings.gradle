@@ -9,3 +9,5 @@ include 'design-pattern'
 include 'spring-data-jpa'
 include 'spring-batch'
 include 'spring-mvc'
+include 'fixture-monkey-demo'
+

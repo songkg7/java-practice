@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+
+    testImplementation 'org.assertj:assertj-core:3.23.1'
+    testImplementation 'com.navercorp.fixturemonkey:fixture-monkey-starter:0.3.5'
+    testImplementation 'net.jqwik:jqwik:1.6.5'
+    testImplementation 'org.hibernate.validator:hibernate-validator:8.0.0.Final'
+}
+
+test {
+    useJUnitPlatform()
+}
