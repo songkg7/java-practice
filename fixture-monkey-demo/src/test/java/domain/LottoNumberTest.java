@@ -5,8 +5,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.navercorp.fixturemonkey.FixtureMonkey;
 import com.navercorp.fixturemonkey.generator.BuilderArbitraryGenerator;
+import com.navercorp.fixturemonkey.generator.FieldReflectionArbitraryGenerator;
 import java.util.List;
 import net.jqwik.api.Arbitraries;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,20 @@ class LottoNumberTest {
         System.out.println("lottoNumber: " + lottoNumber);
 
         assertThat(lottoNumber).isNotNull();
+    }
+
+    @Test
+    @Disabled("이 테스트를 통과시키려면 LottoNumber 에 기본 생성자를 구현해야 함")
+    void fieldReflection() {
+        FixtureMonkey monkey = FixtureMonkey.builder()
+                .defaultGenerator(FieldReflectionArbitraryGenerator.INSTANCE)
+                .build();
+
+        LottoNumber lottoNumber = monkey.giveMeBuilder(LottoNumber.class)
+                .set("number", 1)
+                .sample();
+
+        assertThat(lottoNumber).isEqualTo(LottoNumber.of(1));
     }
 
     @RepeatedTest(1000)
