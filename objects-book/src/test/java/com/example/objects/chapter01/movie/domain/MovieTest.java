@@ -19,8 +19,12 @@ class MovieTest {
                 new AmountDiscountPolicy(Money.wons(800),
                         new SequenceCondition(1),
                         new SequenceCondition(10),
-                        new PeriodCondition(DayOfWeek.MONDAY, LocalTime.of(10, 0), LocalTime.of(11, 59)),
-                        new PeriodCondition(DayOfWeek.THURSDAY, LocalTime.of(10, 0), LocalTime.of(20, 59))));
+                        new PeriodCondition(DayOfWeek.MONDAY,
+                                LocalTime.of(10, 0),
+                                LocalTime.of(11, 59)),
+                        new PeriodCondition(DayOfWeek.THURSDAY,
+                                LocalTime.of(10, 0),
+                                LocalTime.of(20, 59))));
 
         Screening screening = new Screening(avatar, 1, LocalDateTime.of(2022, 1, 1, 10, 0));
 
@@ -33,12 +37,18 @@ class MovieTest {
 
     @Test
     void test_2() {
-        Movie starWars = new Movie("스타워즈", Duration.ofMinutes(210), Money.wons(10000), new NoneDiscountPolicy());
+        Movie starWars = new Movie("스타워즈",
+                Duration.ofMinutes(210),
+                Money.wons(10000),
+                new NoneDiscountPolicy());
     }
 
     @Test
     void test_3() {
-        Movie starWars = new Movie("스타워즈", Duration.ofMinutes(210), Money.wons(10000), new NoneDiscountPolicy());
+        Movie starWars = new Movie("스타워즈",
+                Duration.ofMinutes(210),
+                Money.wons(10000),
+                new NoneDiscountPolicy());
 
         starWars.changeDiscountPolicy(new PercentDiscountPolicy(50, new SequenceCondition(1)));
     }
