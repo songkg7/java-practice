@@ -4,8 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.chrono.ChronoZonedDateTime;
 import java.time.temporal.WeekFields;
+import org.assertj.core.internal.ChronoZonedDateTimeByInstantComparator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -38,21 +41,54 @@ public class TimeTest {
     }
 
     @Test
-    void compareZonedDateTimeToLocalDateTime() {
+    void compareZonedDateTime() {
         ZonedDateTime seoulZonedTime = ZonedDateTime.parse("2021-10-10T10:00:00+09:00[Asia/Seoul]");
         ZonedDateTime utcTime = ZonedDateTime.parse("2021-10-10T01:00:00Z[UTC]");
 
-        boolean b1 = seoulZonedTime.equals(utcTime);// false
+        boolean b1 = seoulZonedTime.equals(utcTime); // false
         assertThat(b1).isFalse();
     }
 
     @Test
-    void compareZonedDateTimeToLocalDateTime_2() {
+    void compareZonedDateTime_2() {
         ZonedDateTime seoulZonedTime = ZonedDateTime.parse("2021-10-10T10:00:00+09:00[Asia/Seoul]");
         ZonedDateTime utcTime = ZonedDateTime.parse("2021-10-10T01:00:00Z[UTC]");
 
         // ChronoZonedDateTimeByInstantComparator 에 의해 timeLineOrder 가 호출되며 비교된다.
         assertThat(seoulZonedTime).isEqualTo(utcTime);
+    }
+
+    @Test
+    void chronoComparator() {
+        ZonedDateTime seoulZonedTime = ZonedDateTime.parse("2021-10-10T10:00:00+09:00[Asia/Seoul]");
+        ZonedDateTime utcTime = ZonedDateTime.parse("2021-10-10T01:00:00Z[UTC]");
+
+        ChronoZonedDateTimeByInstantComparator comparator = ChronoZonedDateTimeByInstantComparator.getInstance();
+        // 첫번째가 작으면 -1, 같으면 0, 크면 1
+        int compare = comparator.compare(seoulZonedTime, utcTime);
+
+        assertThat(compare).isEqualTo(0);
+    }
+
+    @Test
+    void chronoZonedDateTime() {
+        ZonedDateTime seoulZonedTime = ZonedDateTime.parse("2021-10-10T10:00:00+09:00[Asia/Seoul]");
+        ZonedDateTime utcTime = ZonedDateTime.parse("2021-10-10T01:00:00Z[UTC]");
+
+        int compare = ChronoZonedDateTime.timeLineOrder().compare(seoulZonedTime, utcTime);
+
+        assertThat(compare).isEqualTo(0);
+    }
+
+    @Test
+    void compareZoneAndLocal() {
+        ZonedDateTime seoulZonedTime = ZonedDateTime.parse("2021-10-10T10:00:00+09:00[Asia/Seoul]");
+        LocalDateTime localDateTime = LocalDateTime.parse("2021-10-10T10:00:00");
+
+        long t1 = seoulZonedTime.toEpochSecond();
+        long t2 = localDateTime.toEpochSecond(seoulZonedTime.getOffset());
+
+        assertThat(t1).isEqualTo(t2);
     }
 
     @Test
