@@ -10,4 +10,4 @@ include 'spring-data-jpa'
 include 'spring-batch'
 include 'spring-mvc'
 include 'fixture-monkey-demo'
-
+include 'spring-webflux-parameter-sample'
