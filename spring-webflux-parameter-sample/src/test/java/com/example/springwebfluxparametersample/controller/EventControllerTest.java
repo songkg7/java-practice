@@ -13,12 +13,13 @@ class EventControllerTest {
 
     @Test
     void helloEvent() {
-        webTestClient.get().uri("/event?name=Spring&time=2021-08-01T12:00:00Z")
+        webTestClient.get().uri("/event?name=Spring&time=2021-08-01T12:00:00Z&anotherTime=2021-08-01T12")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
                 .jsonPath("$.name").isEqualTo("Spring")
-                .jsonPath("$.time").isEqualTo("2021-08-01T12:00:00");
+                .jsonPath("$.time").isEqualTo("2021-08-01T12:00:00")
+                .jsonPath("$.anotherTime").isEqualTo("2021-08-01T12:00:00");
     }
 
 }
