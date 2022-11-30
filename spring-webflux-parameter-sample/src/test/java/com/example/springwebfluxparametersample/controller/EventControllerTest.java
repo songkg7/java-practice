@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @WebFluxTest
 class EventControllerTest {
@@ -13,7 +14,15 @@ class EventControllerTest {
 
     @Test
     void helloEvent() {
-        webTestClient.get().uri("/event?name=Spring&time=2021-08-01T12:00:00Z&anotherTime=2021-08-01T12")
+        var uri = UriComponentsBuilder.fromUriString("/event")
+                .queryParam("name", "Spring")
+                .queryParam("time", "2021-08-01T12:00:00Z")
+                .queryParam("anotherTime", "2021-08-01T12")
+                .build()
+                .toUri();
+
+        webTestClient.get()
+                .uri(uri)
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
