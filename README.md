@@ -1,6 +1,6 @@
 # Java practice
 
-> 이 Repository 는 언어 레벨 테스트 및 블로그 코드 예제를 위한 repository 입니다..
+> 이 Repository 는 언어 레벨 테스트 및 블로그 코드 예제를 위한 repository 입니다.
 
 ### Book
 
