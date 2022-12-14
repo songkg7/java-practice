@@ -23,6 +23,7 @@
 - Singleton
 - Strategy
 - Adapter
+- Observer
 
 ### Java
 - Immutable object
