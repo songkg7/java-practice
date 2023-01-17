@@ -2,6 +2,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Stack;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class LeetCodeTest {
 
@@ -31,6 +33,27 @@ public class LeetCodeTest {
         }
 
         assertThat(result).isEmpty();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = { "{[]}", "()", "()[]{}" })
+    void validParentheses_2(String s) {
+        Stack<Character> stack = new Stack<>();
+        boolean result;
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                stack.push(')');
+            } else if (c == '{') {
+                stack.push('}');
+            } else if (c == '[') {
+                stack.push(']');
+            } else if (stack.isEmpty() || stack.pop() != c) {
+                result = false;
+            }
+        }
+        result = stack.isEmpty();
+
+        assertThat(result).isTrue();
     }
 
 }
