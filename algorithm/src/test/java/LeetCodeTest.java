@@ -56,4 +56,31 @@ public class LeetCodeTest {
         assertThat(result).isTrue();
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = { "{[]}", "()", "()[]{}" })
+    void validParentheses_3(String s) {
+        char[] chars = s.toCharArray();
+        Stack<Character> result = new Stack<>();
+        for (int i = 0; i < chars.length; i++) {
+            if (i == 0 || result.isEmpty()) {
+                result.push(chars[i]);
+                continue;
+            }
+            char lastElement = result.pop();
+            if (chars[i] == ')' && lastElement == '(') {
+                continue;
+            }
+            if (chars[i] == ']' && lastElement == '[') {
+                continue;
+            }
+            if (chars[i] == '}' && lastElement == '{') {
+                continue;
+            }
+            result.push(lastElement);
+            result.push(chars[i]);
+        }
+
+        assertThat(result).isEmpty();
+    }
+
 }
