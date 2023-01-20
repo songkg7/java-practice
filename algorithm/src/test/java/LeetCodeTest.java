@@ -83,4 +83,34 @@ public class LeetCodeTest {
         assertThat(result).isEmpty();
     }
 
+    @Test
+    void searchInsertTest() {
+        int[] nums = { 1, 3, 5, 6 };
+        int target = 6;
+        // return 2
+        int answer = searchInsert(nums, target);
+
+        assertThat(answer).isEqualTo(3);
+    }
+
+    private int searchInsert(int[] nums, int target) {
+        // index
+        int low = 0;
+        int mid;
+        int high = nums.length - 1;
+
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            }
+            if (nums[mid] < target) {
+                low = mid + 1;
+            } else if (nums[mid] > target) {
+                high = mid - 1;
+            }
+        }
+        return low; // 찾고자 하는 원소가 없을 때
+    }
+
 }
