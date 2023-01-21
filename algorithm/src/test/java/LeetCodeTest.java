@@ -113,4 +113,16 @@ public class LeetCodeTest {
         return low; // 찾고자 하는 원소가 없을 때
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = { "    fly  to the moon " })
+    void regexpTest(String s) {
+        int answer = lastWordLength(s);
+        assertThat(answer).isEqualTo(4);
+    }
+
+    private int lastWordLength(String s) {
+        String[] arr = s.trim().split(" ");
+        return arr[arr.length - 1].length();
+    }
+
 }
