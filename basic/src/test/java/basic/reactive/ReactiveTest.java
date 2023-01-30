@@ -53,6 +53,21 @@ public class ReactiveTest {
     }
 
     @Test
+    @DisplayName("Reactive streams 규격을 지키지 않거나 기준을 따르지 않으면 dropping hook 이 호출된다.")
+    void onNextDropped() {
+        Hooks.onNextDropped(o -> {
+            log.info("onNextDropped: {}", o);
+            assertThat(o).isEqualTo(1);
+        });
+
+        Mono.from(s -> {
+                    s.onComplete(); // complete 를 호출하고
+                    s.onNext(1); // onNext 를 호출하면 onNextDropped hook 이 호출된다.
+                })
+                .subscribe();
+    }
+
+    @Test
     @DisplayName("OnNext, OnError, OnComplete 를 실행하는동안 예외가 발생하면 OnOperatorError 가 호출된다.")
     void onOperatorError() {
         Hooks.onOperatorError((throwable, o) -> {
