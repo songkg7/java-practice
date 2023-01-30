@@ -3,7 +3,9 @@ package basic.oop.sea.ship;
 import basic.oop.sea.cargo.Cargo;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 
+@Getter
 public class ContainerShip implements Ship {
 
     private int durability = 100;
