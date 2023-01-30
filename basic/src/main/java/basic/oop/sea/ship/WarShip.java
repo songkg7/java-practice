@@ -3,9 +3,8 @@ package basic.oop.sea.ship;
 import lombok.Getter;
 
 @Getter
-public class WarShip implements Ship {
+public class WarShip extends Ship {
 
-    private int durability = 100;
     private final int attackPower;
 
     public WarShip() {
@@ -14,16 +13,6 @@ public class WarShip implements Ship {
 
     public WarShip(int attackPower) {
         this.attackPower = attackPower;
-    }
-
-    @Override
-    public void sailing() {
-        System.out.println("WarShip sailing");
-    }
-
-    @Override
-    public void damage(int attackPower) {
-        durability -= attackPower;
     }
 
     public void attack(Ship ship) {
