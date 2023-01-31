@@ -99,4 +99,22 @@ public class ReactiveTest {
                 .verifyComplete();
     }
 
+    @Test
+    @DisplayName("onEachOperator 에서 onNext 에 의해 호출되는지 확인")
+    void onEachOperator_onNext() {
+        Hooks.onEachOperator(objectPublisher -> {
+            log.info("onEachOperator: {}", objectPublisher);
+            return objectPublisher;
+        });
+
+        Flux<Integer> firstFlux = Flux.just(1, 2, 3) // FluxArray publisher
+                .map(i -> i + 1); // FluxMapFuseable publisher
+
+        Flux<Integer> secondFlux = Flux.from(firstFlux)
+                .doOnNext(i -> log.info("onNext: {}", i)); // FluxPeekFuseable publisher
+
+        StepVerifier.create(secondFlux) // just 로 MonoJust, map 으로 MonoMapFuseable
+                .expectNext(2, 3, 4)
+                .verifyComplete();
+    }
 }
