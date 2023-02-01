@@ -147,7 +147,7 @@ public class LeetCodeTest {
 
     @Test
     void addBinaryTest() {
-        String answer = addBinary("11", "1");
+        String answer = addBinary2("11", "1");
 
         assertThat(answer).isEqualTo("100");
     }
@@ -156,6 +156,31 @@ public class LeetCodeTest {
         BigInteger ba = new BigInteger(a, 2);
         BigInteger bb = new BigInteger(b, 2);
         return ba.add(bb).toString(2);
+    }
+
+    private String addBinary2(String a, String b) {
+        int aIdx = a.length() - 1;
+        int bIdx = b.length() - 1;
+
+        int sum = 0;
+        StringBuilder sb = new StringBuilder();
+
+        while (aIdx >= 0 || bIdx >= 0) {
+            if (aIdx >= 0) {
+                sum += a.charAt(aIdx--) - '0'; // subtract by '0' to convert the numbers from a char
+            }
+            if (bIdx >= 0) {
+                sum += b.charAt(bIdx--) - '0';
+            }
+
+            sb.append(sum % 2); // 비교 자리수가 모두 1 이여서 합계가 2가 될 경우 0 을 넣고 다음 자리를 계산할 때 1 을 추가
+            sum /= 2;
+        }
+
+        if (sum == 1) {
+            sb.append(sum);
+        }
+        return sb.reverse().toString();
     }
 
 }
