@@ -1,5 +1,6 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigInteger;
 import java.util.Stack;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -142,6 +143,19 @@ public class LeetCodeTest {
         int[] result = new int[digits.length + 1];
         result[0] = 1;
         return result;
+    }
+
+    @Test
+    void addBinaryTest() {
+        String answer = addBinary("11", "1");
+
+        assertThat(answer).isEqualTo("100");
+    }
+
+    private String addBinary(String a, String b) {
+        BigInteger ba = new BigInteger(a, 2);
+        BigInteger bb = new BigInteger(b, 2);
+        return ba.add(bb).toString(2);
     }
 
 }
