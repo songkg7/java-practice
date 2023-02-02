@@ -183,4 +183,32 @@ public class LeetCodeTest {
         return sb.reverse().toString();
     }
 
+    @Test
+    void sqrtTest() {
+        int answer = sqrt(16);
+
+        System.out.println("answer: " + answer);
+    }
+
+    private int sqrt(int x) {
+        if (x == 0) {
+            return 0;
+        }
+        int low = 1;
+        int high = x;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (mid <= x / mid && x / (mid + 1) < (mid + 1)) {
+                return mid;
+            }
+            if (mid <= x / mid) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low;
+    }
+
 }
