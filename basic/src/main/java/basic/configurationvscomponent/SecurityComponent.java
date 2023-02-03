@@ -1,11 +1,10 @@
 package basic.configurationvscomponent;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 @Component
-@EnableAspectJAutoProxy
+//@EnableAspectJAutoProxy
 public class SecurityComponent {
 
     @Bean

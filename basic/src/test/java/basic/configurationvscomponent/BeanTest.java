@@ -1,5 +1,7 @@
 package basic.configurationvscomponent;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.context.ApplicationContext;
@@ -13,10 +15,12 @@ class BeanTest {
                 SecurityConfig.class);
 
         PasswordEncoder passwordEncoder = context.getBean("passwordEncoder", PasswordEncoder.class);
-        PasswordEncoder passwordEncoder2 = context.getBean("anyPasswordEncoder", PasswordEncoder.class);
+        PasswordEncoder anyPasswordEncoder = context.getBean("anyPasswordEncoder", PasswordEncoder.class);
         System.out.println("passwordEncoder.getClass(): " + passwordEncoder.getClass());
-        System.out.println("passwordEncoder2.getClass(): " + passwordEncoder2.getClass());
+        System.out.println("anyPasswordEncoder.getClass(): " + anyPasswordEncoder.getClass());
         passwordEncoder.encode("password");
+
+        assertThat(passwordEncoder).isSameAs(anyPasswordEncoder);
     }
 
     @Test
@@ -28,6 +32,8 @@ class BeanTest {
         PasswordEncoder anyPasswordEncoder = context.getBean("anyPasswordEncoder", PasswordEncoder.class);
         System.out.println("passwordEncoder.getClass(): " + passwordEncoder.getClass());
         System.out.println("anyPasswordEncoder.getClass(): " + anyPasswordEncoder.getClass());
+
+        assertThat(passwordEncoder).isNotSameAs(anyPasswordEncoder);
     }
 
     @Test
