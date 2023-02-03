@@ -12,19 +12,22 @@ class BeanTest {
         ApplicationContext context = new AnnotationConfigApplicationContext(
                 SecurityConfig.class);
 
-        PasswordEncoder passwordEncoder = context.getBean(PasswordEncoder.class);
+        PasswordEncoder passwordEncoder = context.getBean("passwordEncoder", PasswordEncoder.class);
+        PasswordEncoder passwordEncoder2 = context.getBean("anyPasswordEncoder", PasswordEncoder.class);
         System.out.println("passwordEncoder.getClass(): " + passwordEncoder.getClass());
+        System.out.println("passwordEncoder2.getClass(): " + passwordEncoder2.getClass());
         passwordEncoder.encode("password");
     }
 
     @Test
-    void getProxyPasswordEncoderBean() {
+    void component() {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
                 SecurityComponent.class);
 
-        PasswordEncoder passwordEncoder = context.getBean(PasswordEncoder.class);
+        PasswordEncoder passwordEncoder = context.getBean("passwordEncoder", PasswordEncoder.class);
+        PasswordEncoder anyPasswordEncoder = context.getBean("anyPasswordEncoder", PasswordEncoder.class);
         System.out.println("passwordEncoder.getClass(): " + passwordEncoder.getClass());
-        passwordEncoder.encode("password");
+        System.out.println("anyPasswordEncoder.getClass(): " + anyPasswordEncoder.getClass());
     }
 
     @Test
