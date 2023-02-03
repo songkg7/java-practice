@@ -11,4 +11,9 @@ public class SecurityComponent {
         return new PasswordEncoder();
     }
 
+    @Bean
+    public AspectService aspectService() {
+        return new AspectService();
+    }
+
 }
