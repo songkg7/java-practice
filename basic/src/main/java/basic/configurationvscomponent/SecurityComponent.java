@@ -1,10 +1,11 @@
 package basic.configurationvscomponent;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 @Component
-//@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy
 public class SecurityComponent {
 
     @Bean
@@ -18,7 +19,6 @@ public class SecurityComponent {
         return passwordEncoder();
     }
 
-    // NOTE: CGLIB proxy 를 사용할 수 없으며, Spring AOP 를 사용할 수 없다.
     @Bean
     public AspectService aspectService() {
         return new AspectService();

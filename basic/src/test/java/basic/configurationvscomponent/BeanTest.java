@@ -11,8 +11,7 @@ class BeanTest {
 
     @Test
     void getPasswordEncoderBean() {
-        ApplicationContext context = new AnnotationConfigApplicationContext(
-                SecurityConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(SecurityConfig.class);
 
         PasswordEncoder passwordEncoder = context.getBean("passwordEncoder", PasswordEncoder.class);
         PasswordEncoder anyPasswordEncoder = context.getBean("anyPasswordEncoder", PasswordEncoder.class);
@@ -25,8 +24,7 @@ class BeanTest {
 
     @Test
     void component() {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-                SecurityComponent.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(SecurityComponent.class);
 
         PasswordEncoder passwordEncoder = context.getBean("passwordEncoder", PasswordEncoder.class);
         PasswordEncoder anyPasswordEncoder = context.getBean("anyPasswordEncoder", PasswordEncoder.class);
