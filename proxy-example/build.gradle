@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'application'
 }
 
 group 'com.example'
@@ -14,13 +13,14 @@ ext {
     junitVersion = '5.9.1'
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
 dependencies {
-    implementation 'cglib:cglib:3.2.4'
+    implementation 'cglib:cglib:3.3.0'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    testImplementation 'org.assertj:assertj-core:3.20.2'
 }
 
 test {
