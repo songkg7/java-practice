@@ -219,10 +219,16 @@ public class LeetCodeTest {
     }
 
     private int climbingStairs(int n) {
-        int[] fibonacci = new int[46];
+        if (n == 1) {
+            return 1;
+        }
+        if (n == 2) {
+            return 2;
+        }
+        int[] fibonacci = new int[n + 1];
         fibonacci[1] = 1;
         fibonacci[2] = 2;
-        for (int i = 3; i <= 45; i++) {
+        for (int i = 3; i < n + 1; i++) {
             fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
         }
         return fibonacci[n];
