@@ -211,4 +211,21 @@ public class LeetCodeTest {
         return low;
     }
 
+    // LeetCode 70
+    @Test
+    void climbingStairTest() {
+        int answer = climbingStairs(3);
+        System.out.println("answer: " + answer);
+    }
+
+    private int climbingStairs(int n) {
+        int[] fibonacci = new int[46];
+        fibonacci[1] = 1;
+        fibonacci[2] = 2;
+        for (int i = 3; i <= 45; i++) {
+            fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
+        }
+        return fibonacci[n];
+    }
+
 }
