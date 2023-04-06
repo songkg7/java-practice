@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Solution1 {
-    public boolean solution(String[] phone_book) {
+public class Solution {
+    public boolean solution1(String[] phone_book) {
         Map<String, Integer> map = new HashMap<>();
         for (int i = 0; i < phone_book.length; i++) {
             map.put(phone_book[i], i);
@@ -20,10 +20,8 @@ public class Solution1 {
         }
         return true;
     }
-}
 
-class Solution2 {
-    public boolean solution(String[] phone_book) {
+    public boolean solution2(String[] phone_book) {
         Arrays.sort(phone_book);
         for (int i = 0; i < phone_book.length - 1; i++) {
             if (phone_book[i + 1].startsWith(phone_book[i])) {
