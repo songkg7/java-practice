@@ -1,7 +1,5 @@
 package basic.reactive;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import basic.exception.TestException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,6 +9,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Hooks;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ReactiveTest {
 
@@ -115,6 +115,23 @@ public class ReactiveTest {
 
         StepVerifier.create(secondFlux) // just 로 MonoJust, map 으로 MonoMapFuseable
                 .expectNext(2, 3, 4)
+                .verifyComplete();
+    }
+
+    @Test
+    @DisplayName("window")
+    void window() {
+        var flux = Flux.range(1, 100);
+
+        // skip first and last
+        Flux<Integer> skipFirstAndLast = flux
+                .skip(1)
+                .skipLast(1)
+                .map(i -> i * 2)
+                .log();
+
+        StepVerifier.create(skipFirstAndLast)
+                .expectNextCount(98)
                 .verifyComplete();
     }
 }
