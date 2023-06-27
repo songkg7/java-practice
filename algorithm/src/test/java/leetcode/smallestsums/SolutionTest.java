@@ -23,4 +23,12 @@ class SolutionTest {
 
         assertThat(actual).containsExactly(List.of(1, 1), List.of(1, 1));
     }
+
+    @Test
+    void ksmallestSums_3() {
+        Solution solution = new Solution();
+        List<List<Integer>> actual = solution.kSmallestPairs(new int[]{1, 2}, new int[]{3}, 3);
+
+        assertThat(actual).containsExactly(List.of(1, 3), List.of(2, 3));
+    }
 }
