@@ -16,6 +16,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import basic.nullcheck.Human;
+import basic.nullcheck.Money;
+
+import java.math.BigDecimal;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class BasicTest {
 
@@ -301,5 +324,15 @@ class BasicTest {
                 .orElse("b");
 
         assertThat(result).isEqualTo("A");
+    }
+
+    @Test
+    void floatingPoint() {
+//        assertThat(0.1 + 1.1 == 1.2).isTrue();
+        System.out.println(0.1 + 1.1);
+        BigDecimal result = BigDecimal.valueOf(0.1).add(BigDecimal.valueOf(1.1));
+        System.out.println("result: " + result);
+
+        assertThat(result).isEqualTo(BigDecimal.valueOf(1.2));
     }
 }
