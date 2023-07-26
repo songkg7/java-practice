@@ -1,1 +1,4 @@
-
+spring:
+  docker:
+    compose:
+      file: spring-data-elasticsearch/compose.yaml
