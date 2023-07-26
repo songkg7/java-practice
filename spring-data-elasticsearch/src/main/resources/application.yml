@@ -2,3 +2,10 @@ spring:
   docker:
     compose:
       file: spring-data-elasticsearch/compose.yaml
+
+logging:
+  level:
+    org:
+      springframework:
+        core:
+          LocalVariableTableParameterNameDiscoverer: error

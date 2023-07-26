@@ -1,24 +1,25 @@
 services:
   elasticsearch:
-    image: 'docker.elastic.co/elasticsearch/elasticsearch:7.17.10'
+    image: 'docker.elastic.co/elasticsearch/elasticsearch:8.7.1'
     environment:
-      - 'ELASTIC_PASSWORD=secret'
+#      - 'ELASTIC_PASSWORD=changeme'
       - 'discovery.type=single-node'
       - 'xpack.security.enabled=false'
     ports:
-      - '9200'
-      - '9300'
+      - 9200:9200
+      - 9300:9300
     networks:
       - es-bridge
 
   kibana:
     container_name: kibana
-    image: 'docker.elastic.co/kibana/kibana:7.17.10'
+    image: 'docker.elastic.co/kibana/kibana:8.7.1'
     environment:
       SERVER_NAME: 'kibana'
       ELASTICSEARCH_HOSTS: 'http://elasticsearch:9200'
+#      KIBANA_SYSTEM_PASSWORD: 'changeme'
     ports:
-      - '5601'
+      - 5601:5601
     depends_on:
       - elasticsearch
     networks:
