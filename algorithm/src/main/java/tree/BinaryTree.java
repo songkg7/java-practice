@@ -1,6 +1,7 @@
 package tree;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class BinaryTree<T> {
     private int count;
@@ -64,5 +65,15 @@ public class BinaryTree<T> {
 
     public int size() {
         return count;
+    }
+
+    public List<T> inOrderTraverse(Node<T> focusNode, List<T> result) {
+        if (focusNode != null) {
+            // 중위 탐색 = 오름차순 정렬
+            inOrderTraverse(focusNode.left, result);
+            result.add(focusNode.val);
+            inOrderTraverse(focusNode.right, result);
+        }
+        return result;
     }
 }
